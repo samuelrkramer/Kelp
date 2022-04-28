@@ -16,8 +16,6 @@ app.use(morgan('dev'));
 app.use(cookieParser());
 app.use(express.json());
 
-app.use(routes); // Connect all the routes
-
 // Security Middleware
 if (!isProduction) {
   // enable cors only in development
@@ -29,17 +27,19 @@ app.use(
   helmet.crossOriginResourcePolicy({ 
     policy: "cross-origin" 
   })
+  );
+  
+  // Set the _csrf token and create req.csrfToken method
+  app.use(
+    csurf({
+      cookie: {
+        secure: isProduction,
+        sameSite: isProduction && "Lax",
+        httpOnly: true
+      }
+    })
 );
 
-// Set the _csrf token and create req.csrfToken method
-app.use(
-  csurf({
-    cookie: {
-      secure: isProduction,
-      sameSite: isProduction && "Lax",
-      httpOnly: true
-    }
-  })
-);
+app.use(routes); // Connect all the routes
 
 module.exports = app;
