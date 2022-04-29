@@ -7,7 +7,7 @@ const { secret, expiresIn } = jwtConfig;
 // Sends a JWT Cookie
 const setTokenCookie = (res, user) => {
   // Create the token.
-  const token = jet.sign(
+  const token = jwt.sign(
     { data: user.toSafeObject() },
     secret,
     { expiresIn: parseInt(expiresIn) } // 604,800 seconds = 1 week
