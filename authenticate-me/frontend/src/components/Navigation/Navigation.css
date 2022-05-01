@@ -1,0 +1,7 @@
+ul li::marker {
+  display: none
+}
+
+a:active {
+  font-weight: bold;
+}
