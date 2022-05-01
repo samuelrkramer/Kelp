@@ -1,0 +1,28 @@
+form {
+  display: flex;
+  flex-direction: column;
+  /* display: grid;
+  grid-template-columns: 1fr 1fr; */
+  justify-content: center;
+  border: solid 2px black;
+  padding: 5px 5px;
+}
+
+form ul:empty {
+  display: none;
+}
+
+/* label {
+  grid-column: 1;
+}
+input {
+  grid-column: 2;
+} */
+
+label {
+  font-family: Arial, Helvetica, sans-serif;
+  /* padding-right: 10px; */
+}
+form button {
+  max-width: 70px;
+}
