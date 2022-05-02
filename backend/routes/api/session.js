@@ -53,7 +53,29 @@ router.delete(
     return res.json({ message: 'success' });
   }
 );
+  
+// Demo user log in
+router.get(
+  "/demo",
+  asyncHandler(async (req, res, next) => {
+    const user = await User.getCurrentUserById(1);
 
+    if (!user) {
+      const err = new Error('Login failed');
+      err.status = 401;
+      err.title = 'Demo login failed';
+      err.errors = ['The demo login mechanism failed.'];
+      return next(err);
+    }
+
+    await setTokenCookie(res, user);
+
+    return res.json({
+      user
+    });
+  })
+);
+    
 // Restore session user
 router.get(
   '/',

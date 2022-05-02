@@ -26,6 +26,16 @@ function LoginFormPage() {
       });
   }
 
+  const demoLogin = (e) => {
+    e.preventDefault();
+    setErrors([]);
+    return dispatch(sessionActions.demoUserLogin())
+      .catch(async (res) => {
+        const data = await res.json();
+        if (data && data.errors) setErrors(data.errors);
+      });
+  }
+
   return (
     <form onSubmit={handleSubmit}>
       <ul>
@@ -50,6 +60,7 @@ function LoginFormPage() {
         />
       </label>
       <button type="submit">Log In</button>
+      <button onClick={(e) => demoLogin(e)}>Demo</button>
     </form>
   );
 }
