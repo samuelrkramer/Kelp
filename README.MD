@@ -1,4 +1,4 @@
-#Welcome to Kelp
+# Welcome to Kelp
 
-##DB Schema
+## DB Schema
 ![Schema](dbschema.jpeg)
