@@ -26,7 +26,8 @@ function LoginFormPage() {
       });
   }
 
-  const demoLogin = () => {
+  const demoLogin = (e) => {
+    e.preventDefault();
     setErrors([]);
     return dispatch(sessionActions.demoUserLogin())
       .catch(async (res) => {
@@ -59,7 +60,7 @@ function LoginFormPage() {
         />
       </label>
       <button type="submit">Log In</button>
-      <button onClick={demoLogin}>Demo</button>
+      <button onClick={(e) => demoLogin(e)}>Demo</button>
     </form>
   );
 }
