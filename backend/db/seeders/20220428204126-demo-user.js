@@ -11,26 +11,27 @@ module.exports = {
       Example:
     */
     return queryInterface.bulkInsert('Users', [
-      {
-        username: 'JohnDoe',
-        email: 'john@doe.demo',
-        hashedPassword: '$2a$10$gACPTD5ByaJEhG.TyFZyc.I4NtAIujVEHxJ0G2jaxx40E2DOQpPbO'
-      },
+      // {
+      //   username: 'JohnDoe',
+      //   email: 'john@doe.demo',
+      //   hashedPassword: '$2a$10$gACPTD5ByaJEhG.TyFZyc.I4NtAIujVEHxJ0G2jaxx40E2DOQpPbO'
+      // },
       {
         email: 'demo@user.io',
-        username: 'Demo-lition',
-        hashedPassword: bcrypt.hashSync('password')
+        username: 'DemoUser',
+        // hashedPassword: bcrypt.hashSync('password')
+        hashedPassword: '$2a$10$gACPTD5ByaJEhG.TyFZyc.I4NtAIujVEHxJ0G2jaxx40E2DOQpPbO'
       },
-      {
-        email: 'user1@user.io',
-        username: 'FakeUser1',
-        hashedPassword: bcrypt.hashSync('password2')
-      },
-      {
-        email: 'user2@user.io',
-        username: 'FakeUser2',
-        hashedPassword: bcrypt.hashSync('password3')
-      }
+      // {
+      //   email: 'user1@user.io',
+      //   username: 'FakeUser1',
+      //   hashedPassword: bcrypt.hashSync('password2')
+      // },
+      // {
+      //   email: 'user2@user.io',
+      //   username: 'FakeUser2',
+      //   hashedPassword: bcrypt.hashSync('password3')
+      // }
     ], {});
   },
 
