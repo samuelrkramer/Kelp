@@ -58,15 +58,12 @@ router.delete(
 router.get(
   "/demo",
   asyncHandler(async (req, res, next) => {
-    // const { credential, password } = req.body;
-
     const user = await User.getCurrentUserById(1);
-    // console.log(user);
 
     if (!user) {
       const err = new Error('Login failed');
       err.status = 401;
-      err.title = 'Login failed';
+      err.title = 'Demo login failed';
       err.errors = ['The demo login mechanism failed.'];
       return next(err);
     }
