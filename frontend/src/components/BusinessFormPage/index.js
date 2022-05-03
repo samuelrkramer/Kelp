@@ -22,7 +22,24 @@ const BusinessFormPage = ({mode}) => {
 
   const nums = (input) => input.replace(/\D/,'');
   const coords = (input) => input.replace(/[^\d\-\.NnSsEeWw\s]/,'');
+
+  const resetForm = () => {
+    setTitle("");
+    setDescription("");
+    setImgUrl("");
+    setAddress("");
+    setCity("");
+    setState("");
+    setZipCode("");
+    setLat("");
+    setLng("");
+  }
   
+  const handleSubmit = e => {
+    e.preventDefault();
+    alert("caught submit");
+  }
+
   if (!sessionUser) return (
     <Redirect to="/login" />
   );
@@ -30,7 +47,7 @@ const BusinessFormPage = ({mode}) => {
   return (
     <>
       <h1>{mode} a business</h1>
-      <form>
+      <form onSubmit={handleSubmit}>
         <label>
           Title
           <input
@@ -112,6 +129,7 @@ const BusinessFormPage = ({mode}) => {
             onChange={e => setLng(coords(e.target.value))}
           />
         </label>
+        <button type="submit">Submit</button>
       </form>
     </>
   );
