@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 
 import './LoginForm.css';
 
@@ -61,6 +61,7 @@ function LoginFormPage() {
       </label>
       <button type="submit">Log In</button>
       <button onClick={(e) => demoLogin(e)}>Demo</button>
+      <Link to="/signup">Don't have an account? Sign up!</Link>
     </form>
   );
 }
