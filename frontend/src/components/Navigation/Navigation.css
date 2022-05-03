@@ -1,7 +1,26 @@
-ul li::marker {
-  display: none
+html, body, .root {
+  width: 100%;
+  border: 0 0;
 }
 
-a:active {
+.navbar {
+  border-bottom: solid 1px gray;
+  width: 100vw;
+}
+
+ul {
+  width: 100%;
+  padding: 0 0;
+  list-style-type: none;
+}
+
+ul li {
+  width: 100%;
+  list-style: none;
+  display: flex;
+  align-content: space-between;
+}
+
+a.active {
   font-weight: bold;
 }
