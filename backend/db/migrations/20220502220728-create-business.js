@@ -44,7 +44,7 @@ module.exports = {
         type: Sequelize.DECIMAL(10,7)
       },
       lng: {
-        type: Sequelize.DECIMAL(10,7)
+        type: Sequelize.DECIMAL(10,8)
       },
       createdAt: {
         allowNull: false,
