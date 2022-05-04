@@ -1,0 +1,40 @@
+.bg0 {
+  background-image: url("../../static/bgImgs/-Kelp-Forest-oceans-34416306-1629-1080.jpeg");
+}
+.bg1 {
+  background-image: url("../../static/bgImgs/-Kelp-Forest-oceans-34416312-1600-1200.jpeg");
+}
+.bg2 {
+  background-image: url("../../static/bgImgs/Climate-change-could-devastate-most-productive-kelp-ecosystems-960x640.jpeg");
+}
+.bg3 {
+  background-image: url("../../static/bgImgs/Giant-kelp-at-Carlton-Bluff.-Credit-Jo-Smart.jpg");
+}
+.bg4 {
+  background-image: url("../../static/bgImgs/giantkelp-831x560.jpeg");
+}
+.bg5 {
+  background-image: url("../../static/bgImgs/header-kelp-structure-1200x576.jpeg");
+}
+.bg6 {
+  background-image: url("../../static/bgImgs/KELP-1500x999.jpeg");
+}
+
+.splashBody {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: fixed;
+  /* top: 0px; */
+  z-index: 0;
+
+  transition: background-image 3s;
+  height: 100%;
+  width: 100%;
+  
+  text-shadow: 0 0 3px white;
+}
+
+.splashBody .logo {
+  font-size: 6em;
+}
