@@ -27,15 +27,31 @@ export const createBusiness = (user, business) => async (dispatch) => {
 };
 
 export const getBusinesses = () => async dispatch => {
-  const response = await fetch("/api/business");
+  const response = await csrfFetch("/api/business");
+  console.log("getBusinesses thunk fired");
 
   if (response.ok) {
     const list = await response.json();
+    console.log("list:", list);
     dispatch(loadBusinesses(list));
   }
 }
 
-const initialState = { user: null };
+export const fetchOneBusiness = (id) => async dispatch => {
+  console.log("fetchOneBusiness thunk fired");
+  const response = await csrfFetch(`/api/business/${id}`)
+
+  if (response.ok) {
+    const business = await response.json();
+    console.log("business:", business);
+    dispatch(addBusiness(business));
+  }
+}
+
+const initialState = {
+  business: null,
+  list: [],
+};
 
 const businessReducer = (state = initialState, action) => {
   let newState;
@@ -51,9 +67,22 @@ const businessReducer = (state = initialState, action) => {
         list: action.list
       };
     case ADD_BUSINESS:
-      newState = Object.assign({}, state);
-      newState.business = action.payload;
-      return newState;
+      if (!state[action.business.id]) {
+        const newState = {
+          ...state,
+          [action.business.id]: action.business
+        };
+        const businesses = newState.list.map(id => newState[id]);
+        businesses.push(action.business);
+        return newState;
+      }
+      return {
+        ...state,
+        [action.business.id]: {
+          ...state[action.business.id],
+          ...action.business
+        }
+      }
     default:
       return state;
   }
