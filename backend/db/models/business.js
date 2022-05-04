@@ -19,13 +19,13 @@ module.exports = (sequelize, DataTypes) => {
         len: [0,255]
       }
     },
-    imgUrl: {
-      type: DataTypes.STRING,
-      validate: {
-        len: [0,255],
-        isUrl: true
-      }
-    },
+    // imgUrl: {
+    //   type: DataTypes.STRING,
+    //   validate: {
+    //     len: [0,255],
+    //     isUrl: true
+    //   }
+    // },
     address: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -54,22 +54,22 @@ module.exports = (sequelize, DataTypes) => {
         len: [5,5]
       }
     },
-    lat: {
-      type: DataTypes.NUMERIC,
-      validate: {
-        isDecimal: true,
-        max: 180,
-        min: -180
-      }
-    },
-    lng: {
-      type: DataTypes.NUMERIC,
-      validate: {
-        isDecimal: true,
-        max: 90,
-        min: -90
-      }
-    },
+    // lat: {
+    //   type: DataTypes.NUMERIC,
+    //   validate: {
+    //     isDecimal: true,
+    //     max: 180,
+    //     min: -180
+    //   }
+    // },
+    // lng: {
+    //   type: DataTypes.NUMERIC,
+    //   validate: {
+    //     isDecimal: true,
+    //     max: 90,
+    //     min: -90
+    //   }
+    // },
   }, {});
   Business.associate = function(models) {
     // associations can be defined here
