@@ -13,6 +13,7 @@ html, body, .root {
   width: 100%;
   background: rgba(128,128,128,.4);
   display: flex;
+  position: sticky;
 }
 
 .navbar a {
@@ -21,10 +22,10 @@ html, body, .root {
 
 @font-face {
   font-family: 'RockoFLF-Bold';
-  src:url('../../../static/font/RockoFLF-Bold.ttf.woff') format('woff'),
-      url('../../../static/font/RockoFLF-Bold.ttf.svg#RockoFLF-Bold') format('svg'),
-      url('../../../static/font/RockoFLF-Bold.ttf.eot'),
-      url('../../../static/font/RockoFLF-Bold.ttf.eot?#iefix') format('embedded-opentype'); 
+  src:url('../../static/font/RockoFLF-Bold.ttf.woff') format('woff'),
+      url('../../static/font/RockoFLF-Bold.ttf.svg#RockoFLF-Bold') format('svg'),
+      url('../../static/font/RockoFLF-Bold.ttf.eot'),
+      url('../../static/font/RockoFLF-Bold.ttf.eot?#iefix') format('embedded-opentype'); 
   font-weight: normal;
   font-style: normal;
 }
