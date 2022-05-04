@@ -69,6 +69,38 @@ router.post(
   })
 );
 
+// Business view
+router.get(
+  "/:businessId(\\d+)",
+  asyncHandler(async (req, res, next) => {
+    const businessId = req.params.id
+    const business = await business.findByPk(+businessId, {
+      include: [{
+        model: User,
+        attributes: ['id', 'username']
+      }, {
+        model: Review,
+        include: [{
+          model: User,
+          attributes: ['id, username']
+        }]
+      }]
+    });
+
+    if (!business) {
+      const err = new Error('Not found');
+      err.status = 404;
+      err.title = 'Business not found';
+      err.errors = ['The business with given ID was not found.'];
+      return next(err);
+    }
+
+    return res.json({
+      business
+    });
+  })
+);
+
 // // Log out
 // router.delete(
 //   '/',
@@ -78,27 +110,6 @@ router.post(
 //   }
 // );
   
-// // Demo user log in
-// router.get(
-//   "/demo",
-//   asyncHandler(async (req, res, next) => {
-//     const user = await User.getCurrentUserById(1);
-
-//     if (!user) {
-//       const err = new Error('Login failed');
-//       err.status = 401;
-//       err.title = 'Demo login failed';
-//       err.errors = ['The demo login mechanism failed.'];
-//       return next(err);
-//     }
-
-//     await setTokenCookie(res, user);
-
-//     return res.json({
-//       user
-//     });
-//   })
-// );
     
 // // Restore session user
 // router.get(
