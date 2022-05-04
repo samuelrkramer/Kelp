@@ -24,9 +24,17 @@
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  position: absolute;
+  position: fixed;
+  /* top: 0px; */
+  z-index: 0;
 
   transition: background-image 3s;
   height: 100%;
   width: 100%;
+  
+  text-shadow: 0 0 3px white;
+}
+
+.splashBody .logo {
+  font-size: 6em;
 }

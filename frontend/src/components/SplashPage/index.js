@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import "./SplashPage.css";
 
 function importAll(r) {
@@ -17,7 +18,7 @@ const SplashPage = () => {
   console.log("new bg img", bgImgs[bgNum])
   
   useEffect(() => {
-    console.log("bgImgs:", bgImgs);
+    console.log("bgImgs:", bgImgs); 
     // let i = 0;
     const bgInterval = setInterval(() => {
       // i = (i + 1) % bgImgs.length;
@@ -39,6 +40,7 @@ const SplashPage = () => {
       //   // zIndex: 0
       // }}
     >
+      <Link to="/" className="logo splashLogo">kelp🌿</Link>
       <h1>Splash Page</h1>
       <p>Background:
         {bgNum}
