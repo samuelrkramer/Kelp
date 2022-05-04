@@ -9,8 +9,7 @@ const router = express.Router();
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 
-const validateBusiness 
-restoreUser,= [
+const validateBusiness = [
   check('title')
     .exists({ checkFalsy: true })
     .notEmpty()
@@ -70,49 +69,49 @@ router.post(
   })
 );
 
-// // Log out
-// router.delete(
-//   '/',
-//   (_req, res) => {
-//     res.clearCookie('token');
-//     return res.json({ message: 'success' });
-//   }
-// );
+// Log out
+router.delete(
+  '/',
+  (_req, res) => {
+    res.clearCookie('token');
+    return res.json({ message: 'success' });
+  }
+);
   
-// // Demo user log in
-// router.get(
-//   "/demo",
-//   asyncHandler(async (req, res, next) => {
-//     const user = await User.getCurrentUserById(1);
+// Demo user log in
+router.get(
+  "/demo",
+  asyncHandler(async (req, res, next) => {
+    const user = await User.getCurrentUserById(1);
 
-//     if (!user) {
-//       const err = new Error('Login failed');
-//       err.status = 401;
-//       err.title = 'Demo login failed';
-//       err.errors = ['The demo login mechanism failed.'];
-//       return next(err);
-//     }
+    if (!user) {
+      const err = new Error('Login failed');
+      err.status = 401;
+      err.title = 'Demo login failed';
+      err.errors = ['The demo login mechanism failed.'];
+      return next(err);
+    }
 
-//     await setTokenCookie(res, user);
+    await setTokenCookie(res, user);
 
-//     return res.json({
-//       user
-//     });
-//   })
-// );
+    return res.json({
+      user
+    });
+  })
+);
     
-// // Restore session user
-// router.get(
-//   '/',
-//   restoreUser,
-//   (req, res) => {
-//     const { user } = req;
-//     if (user) {
-//       return res.json({
-//         user: user.toSafeObject()
-//       });
-//     } else return res.json({});
-//   }
-// );
+// Restore session user
+router.get(
+  '/',
+  restoreUser,
+  (req, res) => {
+    const { user } = req;
+    if (user) {
+      return res.json({
+        user: user.toSafeObject()
+      });
+    } else return res.json({});
+  }
+);
 
 module.exports = router;
