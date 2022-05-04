@@ -29,6 +29,9 @@ function Navigation({ isLoaded }){
     <div className="navbar">
       <Link to="/" className="logo">kelp🌿</Link>
       <ul>
+        { sessionUser && (
+          <NavLink to="/newBusiness">Add your business</NavLink>
+        )}
         <li>
           <NavLink exact to="/">Home</NavLink>
           {isLoaded && sessionLinks}
