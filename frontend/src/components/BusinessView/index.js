@@ -9,7 +9,7 @@ const BusinessView = () => {
   let { businessId } = useParams();
   businessId = parseInt(businessId);
   console.log("businessId", businessId, typeof(businessId))
-  const business = useSelector(state => state.businesses[businessId]) //|| {
+  const business = useSelector(state => state.business[businessId]) //|| {
     //   title: "Not found business",
     //   description: "No description",
     //   address: "no address",

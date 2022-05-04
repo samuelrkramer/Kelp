@@ -7,7 +7,6 @@ import LoginFormPage from "./components/LoginFormPage";
 import SignupFormPage from "./components/SignupFormPage";
 import Navigation from "./components/Navigation";
 import BusinessFormPage from "./components/BusinessFormPage";
-import ListWrapper from "./components/BusinessView/ListWrapper";
 import BusinessView from "./components/BusinessView";
 
 function App() {

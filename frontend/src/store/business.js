@@ -1,12 +1,20 @@
 import { csrfFetch } from './csrf';
 
 const LOAD_BUSINESSES = 'business/LOAD_BUSINESSES';
-const ADD_BUSINESS = 'business/addBusiness';
+const LOAD_ONE_BUSINESS = 'business/LOAD_ONE_BUSINESS'
+const ADD_BUSINESS = 'business/ADD_BUSINESS';
+const UPDATE_BUSINESS = 'business/UPDATE_BUSINESS';
+const DELETE_BUSINESS = 'business/DELETE_BUSINESS';
 
-const loadBusinesses = list => ({
+const loadBusinesses = businesses => ({
   type: LOAD_BUSINESSES,
-  list
+  payload: businesses
 });
+
+const loadOneBusiness = business => ({
+  type: LOAD_ONE_BUSINESS,
+  payload: business
+})
 
 const addBusiness = (business) => {
   return {
@@ -44,13 +52,12 @@ export const fetchOneBusiness = (id) => async dispatch => {
   if (response.ok) {
     const business = await response.json();
     console.log("business:", business);
-    dispatch(addBusiness(business));
+    dispatch(loadOneBusiness(business));
   }
 }
 
 const initialState = {
-  business: null,
-  list: [],
+  // list: [],  // possibly more advanced than this project
 };
 
 const businessReducer = (state = initialState, action) => {
@@ -58,31 +65,29 @@ const businessReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOAD_BUSINESSES:
       const businesses = {};
-      action.list.forEach(el => {
-        businesses[el.id] = el;
-      });
+      // action.list.forEach(el => {
+      //   businesses[el.id] = el;
+      // });
       return {
         ...businesses,
         ...state,
-        list: action.list
+        // list: action.list
       };
-    case ADD_BUSINESS:
-      if (!state[action.business.id]) {
-        const newState = {
-          ...state,
-          [action.business.id]: action.business
-        };
-        const businesses = newState.list.map(id => newState[id]);
-        businesses.push(action.business);
-        return newState;
-      }
-      return {
+    case LOAD_ONE_BUSINESS: {
+      const newState = {...state};
+      console.log("action:", action)
+      newState[action.payload.id] = action.payload;
+      return newState;
+    }
+    case ADD_BUSINESS: {
+      const newState = {
         ...state,
-        [action.business.id]: {
-          ...state[action.business.id],
-          ...action.business
-        }
-      }
+        [action.payload.id]: action.payload
+      };
+      // const businesses = newState.list.map(id => newState[id]);
+      // businesses.push(action.business);
+      return newState;
+    }
     default:
       return state;
   }

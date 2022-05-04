@@ -95,7 +95,7 @@ router.get(
     //   return next(err);
     // }
 
-    return res.json({ business });
+    return res.json( business );
   })
 );
 
