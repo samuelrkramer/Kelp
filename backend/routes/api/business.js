@@ -2,7 +2,7 @@ const express = require('express');
 const asyncHandler = require('express-async-handler');
 
 const { restoreUser } = require('../../utils/auth');
-const { User, Business } = require('../../db/models');
+const { User, Business, Review } = require('../../db/models');
 
 const router = express.Router();
 
@@ -73,8 +73,8 @@ router.post(
 router.get(
   "/:businessId(\\d+)",
   asyncHandler(async (req, res, next) => {
-    const businessId = req.params.id
-    const business = await business.findByPk(+businessId, {
+    const businessId = req.params.businessId
+    const business = await Business.findByPk(+businessId, {
       include: [{
         model: User,
         attributes: ['id', 'username']
@@ -82,22 +82,20 @@ router.get(
         model: Review,
         include: [{
           model: User,
-          attributes: ['id, username']
+          attributes: ['id', 'username']
         }]
       }]
     });
 
-    if (!business) {
-      const err = new Error('Not found');
-      err.status = 404;
-      err.title = 'Business not found';
-      err.errors = ['The business with given ID was not found.'];
-      return next(err);
-    }
+    // if (!business) {
+    //   const err = new Error('Not found');
+    //   err.status = 404;
+    //   err.title = 'Business not found';
+    //   err.errors = ['The business with given ID was not found.'];
+    //   return next(err);
+    // }
 
-    return res.json({
-      business
-    });
+    return res.json({ business });
   })
 );
 
