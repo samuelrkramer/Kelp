@@ -22,7 +22,7 @@ const SplashPage = () => {
     const bgInterval = setInterval(() => {
       // i = (i + 1) % bgImgs.length;
       setBgNum(prev => ++prev % bgImgs.length)
-    }, 7000);
+    }, 8000);
 
     return () => clearInterval(bgInterval);
   }, []);
@@ -30,14 +30,14 @@ const SplashPage = () => {
   return (
     <div
       className={`splashBody bg${bgNum}`}
-      style={{
-        // backgroundColor: '#030303',
-        // backgroundImage: bgImgs[bgNum],
-        transition: 'background-image 2s',
-        height: "100vw",
-        width: "100%",
-        // zIndex: 0
-      }}
+      // style={{
+      //   // backgroundColor: '#030303',
+      //   // backgroundImage: bgImgs[bgNum],
+      //   transition: 'background-image 2s',
+      //   height: "100vw",
+      //   width: "100%",
+      //   // zIndex: 0
+      // }}
     >
       <h1>Splash Page</h1>
       <p>Background:
