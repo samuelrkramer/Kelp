@@ -48,7 +48,7 @@ const businessReducer = (state = initialState, action) => {
       return {
         ...businesses,
         ...state,
-        action.list
+        list: action.list
       };
     case ADD_BUSINESS:
       newState = Object.assign({}, state);
