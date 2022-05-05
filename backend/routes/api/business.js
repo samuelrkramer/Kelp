@@ -96,16 +96,16 @@ router.get(
   asyncHandler(async (req, res, next) => {
     const businessId = req.params.businessId;
     const business = await Business.findByPk(+businessId, {
-      include: [{
-        model: User,
-        attributes: ['id', 'username']
-      }, {
-        model: Review,
-        include: [{
-          model: User,
-          attributes: ['id', 'username']
-        }]
-      }]
+      // include: [{
+      //   model: User,
+      //   attributes: ['id', 'username']
+      // }, {
+      //   model: Review,
+      //   include: [{
+      //     model: User,
+      //     attributes: ['id', 'username']
+      //   }]
+      // }]
     });
     
   // if (!business) {
@@ -160,8 +160,9 @@ router.put(
       city, state,
       zipCode, lat, lng
     }
-
+    // console.log("newBusiness object", newBusiness)
     const result = await business.update(newBusiness)
+    // console.log("result object", result)
 
     return res.json(result);
   })
