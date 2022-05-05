@@ -69,6 +69,27 @@ router.post(
   })
 );
 
+// All Businesses view
+router.get(
+  "/",
+  asyncHandler(async (req, res, next) => {
+    const businesses = await Business.findAll( {
+      include: [{
+        model: User,
+        attributes: ['id', 'username']
+      }, {
+        model: Review,
+        // include: [{  // probably just need aggregate info from reviews for the frontpage
+        //   model: User,
+        //   attributes: ['id', 'username']
+        // }]
+      }]
+    });
+
+    return res.json( businesses );
+  })
+);
+
 // Business view
 router.get(
   "/:businessId(\\d+)",

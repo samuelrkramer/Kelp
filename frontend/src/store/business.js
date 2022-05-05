@@ -39,9 +39,9 @@ export const getBusinesses = () => async dispatch => {
   console.log("getBusinesses thunk fired");
 
   if (response.ok) {
-    const list = await response.json();
-    console.log("list:", list);
-    dispatch(loadBusinesses(list));
+    const businesses = await response.json();
+    console.log("businesses:", businesses);
+    dispatch(loadBusinesses(businesses));
   }
 }
 
@@ -65,9 +65,9 @@ const businessReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOAD_BUSINESSES:
       const businesses = {};
-      // action.list.forEach(el => {
-      //   businesses[el.id] = el;
-      // });
+      action.payload.forEach(el => {
+        businesses[el.id] = el;
+      });
       return {
         ...businesses,
         ...state,
