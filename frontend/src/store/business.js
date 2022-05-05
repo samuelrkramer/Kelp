@@ -68,6 +68,7 @@ const businessReducer = (state = initialState, action) => {
       action.payload.forEach(el => {
         businesses[el.id] = el;
       });
+      console.log("from LOAD_BUSINESSES in reducer, businesses:", businesses)
       return {
         ...businesses,
         ...state,
