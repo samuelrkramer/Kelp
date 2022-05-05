@@ -23,21 +23,18 @@ const addBusiness = (business) => {
   };
 };
 
-export const createBusiness = (user, business) => async (dispatch) => {
-  const newBusiness = { ...business, ownerId: user.id }
-  const response = await csrfFetch("/api/business", {
-    method: "POST",
-    body: JSON.stringify(newBusiness),
-  });
-  const data = await response.json();
-  dispatch(addBusiness(data.business));
-  return response;
-};
+const updateBusiness = (id, data) => {
+  return {
+    type: UPDATE_BUSINESS,
+    payload: {id, data}
+  };
+}
+
 
 export const getBusinesses = () => async dispatch => {
   const response = await csrfFetch("/api/business");
   console.log("getBusinesses thunk fired");
-
+  
   if (response.ok) {
     const businesses = await response.json();
     console.log("businesses:", businesses);
@@ -48,13 +45,35 @@ export const getBusinesses = () => async dispatch => {
 export const fetchOneBusiness = (id) => async dispatch => {
   console.log("fetchOneBusiness thunk fired");
   const response = await csrfFetch(`/api/business/${id}`)
-
+  
   if (response.ok) {
     const business = await response.json();
     console.log("business:", business);
     dispatch(loadOneBusiness(business));
   }
 }
+
+export const createBusiness = (business) => async (dispatch) => {
+  // const newBusiness = { ...business, ownerId: user.id }
+  const response = await csrfFetch("/api/business", {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify(business),
+  });
+  const data = await response.json();
+  dispatch(addBusiness(data.business));
+  return response;
+};
+
+export const editBusiness = (business, id) => async (dispatch) => {
+  const response = await csrfFetch(`/api/business/${id}`, {
+    method: "PUT",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify(business),
+  });
+  const data = await response.json();
+  dispatch(updateBusiness(id, data.business));
+};
 
 const initialState = {
   // list: [],  // possibly more advanced than this project
@@ -88,6 +107,12 @@ const businessReducer = (state = initialState, action) => {
       // const businesses = newState.list.map(id => newState[id]);
       // businesses.push(action.business);
       return newState;
+    }
+    case UPDATE_BUSINESS: {
+      const newState = {
+        ...state,
+        [action.payload.id]: action.payload.data
+      }
     }
     default:
       return state;

@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Redirect } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchOneBusiness } from "../../store/business";
 
@@ -26,7 +26,7 @@ const BusinessView = () => {
 
   if (!business) {
     console.log("no business, returning null from BusinessView component")
-    return null;
+    return (<Redirect to="/" />);
   }
 
   return (

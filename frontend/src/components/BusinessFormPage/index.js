@@ -1,16 +1,23 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, useParams } from 'react-router-dom';
-import { createBusiness } from '../../store/business';
+import { fetchOneBusiness, createBusiness, editBusiness } from '../../store/business';
 
 
 const BusinessFormPage = ({mode}) => {
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
+  
   const { businessId } = useParams();
-
-  // placeholder until there's actual DB/store functionality for businesses
-  const business = {};
+  const oldBusiness = useSelector(state => state.business[businessId])
+  let business = null;
+  
+  if (mode === "Edit") {
+    businessId = parseInt(businessId);
+    console.log("businessId", businessId, typeof(businessId))
+    // placeholder until there's actual DB/store functionality for businesses
+    // const business = {};
+  }
 
   const [title, setTitle] = useState(business.title || "");
   const [description, setDescription] = useState(business.description || "");
@@ -42,17 +49,30 @@ const BusinessFormPage = ({mode}) => {
     e.preventDefault();
     alert("caught submit");
     setErrors([]);
-    return dispatch(createBusiness(sessionUser, {
+    const newBusiness = {
       title, description,
       imgUrl, address,
       city, state,
       zipCode, lat, lng
-    }))
-      .catch(async (res) => {
-        const data = await res.json();
-        if (data && data.errors) setErrors(data.errors)
-      });
+    }
+    let thunkResult;
+    if (mode === "Create") {
+      thunkResult = dispatch(createBusiness( newBusiness ));
+    }
+    else if (mode === "Edit") {
+      thunkResult = dispatch(editBusiness( newBusiness, businessId ))
+    }
+    return thunkResult.catch(async (res) => {
+      const data = await res.json();
+      if (data && data.errors) setErrors(data.errors)
+    });
   }
+
+  useEffect(() => {
+    console.log("useEffect on BusinessForm fired")
+    dispatch(fetchOneBusiness(businessId));
+    console.log("... after dispatch, BusinessForm component")
+  }, [businessId, dispatch])
 
   if (!sessionUser) return (
     <Redirect to="/login" />
