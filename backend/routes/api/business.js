@@ -119,23 +119,15 @@ router.get(
     return res.json( business );
   })
 );
-    
+
+// Edit business
 router.put(
   "/:businessId(\\d+)",
   validateBusiness,
   restoreUser,
   asyncHandler(async function (req, res, next) {
-    const businessId = parseInt(req.params.businessId);
-    // console.log("busId", businessId, typeof(businessId))
-    const business = await Business.findByPk(+businessId);
-    // const newBusiness = {...business, ...req.body} // PUT replaces the entire record, not updates individual fields
-    // console.log("req body: ", req.body)
-    // console.log("existing business:",business)
-
-    const { title, description, imgUrl, address, city, state, zipCode, lat, lng } = req.body;
-
     const { user } = req;
-
+  
     if (!user) {
       const err = new Error("Must be logged in");
       err.status = 401;
@@ -143,7 +135,17 @@ router.put(
       err.errors = ["Only logged-in users may create a business."];
       return next(err);
     }
-    else if (user.id !== business.ownerId) {
+
+    const businessId = parseInt(req.params.businessId);
+    // console.log("busId", businessId, typeof(businessId))
+    const business = await Business.findByPk(businessId);
+    // const newBusiness = {...business, ...req.body} // PUT replaces the entire record, not updates individual fields
+    // console.log("req body: ", req.body)
+    // console.log("existing business:",business)
+
+    const { title, description, imgUrl, address, city, state, zipCode, lat, lng } = req.body;
+
+    if (user.id !== business.ownerId) {
       const err = new Error('Must be business owner');
       err.status = 403;
       err.title = "Forbidden";
@@ -162,6 +164,41 @@ router.put(
     const result = await business.update(newBusiness)
 
     return res.json(result);
+  })
+);
+
+// Delete business
+router.delete(
+  "/:businessId(\\d+)",
+  restoreUser,
+  asyncHandler(async function (req, res, next) {
+    const { user } = req;
+    
+    if (!user) {
+      const err = new Error("Must be logged in");
+      err.status = 401;
+      err.title = "Unauthorized";
+      err.errors = ["Only logged-in users may create a business."];
+      return next(err);
+    }
+    
+    const businessId = parseInt(req.params.businessId);
+
+    const business = await Business.findByPk(businessId);
+
+    if (user.id !== business.ownerId) {
+      const err = new Error('Must be business owner');
+      err.status = 403;
+      err.title = "Forbidden";
+      err.errors = ["Only the business owner may delete a business."]
+      return next(err)
+    }
+
+    const result = await business.destroy();
+
+    console.log(result);
+
+    return res.json(businessId);
   })
 );
 
