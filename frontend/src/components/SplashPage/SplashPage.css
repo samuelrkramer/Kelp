@@ -24,9 +24,9 @@
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  position: fixed;
-  /* top: 0px; */
-  z-index: 0;
+  position: absolute;
+  top: 0px;
+  z-index: -2;
 
   transition: background-image 3s;
   height: 100%;
