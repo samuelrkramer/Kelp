@@ -31,7 +31,7 @@ const BusinessView = () => {
 
   return (
     <div className="businessDiv">
-      {business.imgUrl && (<img src={business.imgUrl} />)}
+      {business.imgUrl && (<img src={business.imgUrl} alt={business.title} />)}
       <h1>{business.title}</h1>
       <p>
         {business.address}
