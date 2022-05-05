@@ -124,7 +124,7 @@ router.put(
   "/:businessId(\\d+)",
   validateBusiness,
   restoreUser,
-  asyncHandler(async function (req, res) {
+  asyncHandler(async function (req, res, next) {
     const businessId = parseInt(req.params.businessId);
     // console.log("busId", businessId, typeof(businessId))
     const business = await Business.findByPk(+businessId);
@@ -148,6 +148,7 @@ router.put(
       err.status = 403;
       err.title = "Forbidden";
       err.errors = ["Only the business owner may edit a business."]
+      return next(err)
     }
 
     const newBusiness = {
