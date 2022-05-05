@@ -61,8 +61,8 @@ export const createBusiness = (business) => async (dispatch) => {
     body: JSON.stringify(business),
   });
   const data = await response.json();
-  dispatch(addBusiness(data.business));
-  return response;
+  dispatch(addBusiness(data));
+  return data;
 };
 
 export const editBusiness = (business, id) => async (dispatch) => {
@@ -72,7 +72,8 @@ export const editBusiness = (business, id) => async (dispatch) => {
     body: JSON.stringify(business),
   });
   const data = await response.json();
-  dispatch(updateBusiness(id, data.business));
+  dispatch(updateBusiness(id, data));
+  return data
 };
 
 const initialState = {
