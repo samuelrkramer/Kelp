@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, useParams } from 'react-router-dom';
 import { fetchOneBusiness, createBusiness, editBusiness } from '../../store/business';
@@ -8,15 +8,16 @@ const BusinessFormPage = ({mode}) => {
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
   
-  const { businessId } = useParams();
+  let { businessId } = useParams();
   const oldBusiness = useSelector(state => state.business[businessId])
-  let business = null;
+  let business = {};
   
   if (mode === "Edit") {
     businessId = parseInt(businessId);
     console.log("businessId", businessId, typeof(businessId))
     // placeholder until there's actual DB/store functionality for businesses
     // const business = {};
+    business = {...oldBusiness};
   }
 
   const [title, setTitle] = useState(business.title || "");
