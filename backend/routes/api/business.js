@@ -160,9 +160,7 @@ router.put(
       city, state,
       zipCode, lat, lng
     }
-    // console.log("newBusiness object", newBusiness)
     const result = await business.update(newBusiness)
-    // console.log("result object", result)
 
     return res.json(result);
   })
