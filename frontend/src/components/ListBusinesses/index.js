@@ -13,7 +13,7 @@ const ListBusinesses = () => {
     console.log("useEffect on ListBusinesses fired")
     dispatch(getBusinesses());
     console.log("... after dispatch, ListBusinesses component")
-  }, [dispatch, businesses])
+  }, [dispatch])
 
   return (
     <div className="businessList">
