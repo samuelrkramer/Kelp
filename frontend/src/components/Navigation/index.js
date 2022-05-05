@@ -29,8 +29,13 @@ function Navigation({ isLoaded }){
       {/* <Link to="/" className="logo">kelp🌿</Link> */}
       <ul>
         { sessionUser && (
-          <NavLink to="/newBusiness">Add your business</NavLink>
+          <li>
+            <NavLink to="/newBusiness">Add your business</NavLink>
+          </li>
         )}
+        <li>
+          <NavLink to="/business">View all businesses</NavLink> 
+        </li>
         <li>
           <NavLink exact to="/">Home</NavLink>
           {isLoaded && sessionLinks}

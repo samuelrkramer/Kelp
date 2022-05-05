@@ -80,7 +80,7 @@ const BusinessFormPage = ({mode}) => {
     // console.log("result",result);
     // console.log("await result:",await result);
     // if (result) {}
-    history.push("/");
+    history.push("/business");
     // }
   }
 

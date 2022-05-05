@@ -26,6 +26,9 @@ function App() {
             <SplashPage />
             <ListBusinesses />
           </Route>
+          <Route exact path="/business">
+            <ListBusinesses />
+          </Route>
           <Route path="/login">
             <LoginFormPage />
           </Route>
