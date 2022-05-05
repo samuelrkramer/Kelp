@@ -33,22 +33,22 @@ const updateBusiness = (id, data) => {
 
 export const getBusinesses = () => async dispatch => {
   const response = await csrfFetch("/api/business");
-  console.log("getBusinesses thunk fired");
-  
+  // console.log("getBusinesses thunk fired");
+
   if (response.ok) {
     const businesses = await response.json();
-    console.log("businesses:", businesses);
+    // console.log("businesses:", businesses);
     dispatch(loadBusinesses(businesses));
   }
 }
 
 export const fetchOneBusiness = (id) => async dispatch => {
-  console.log("fetchOneBusiness thunk fired");
+  // console.log("fetchOneBusiness thunk fired");
   const response = await csrfFetch(`/api/business/${id}`)
   
   if (response.ok) {
     const business = await response.json();
-    console.log("business:", business);
+    // console.log("business:", business);
     dispatch(loadOneBusiness(business));
   }
 }
@@ -88,7 +88,7 @@ const businessReducer = (state = initialState, action) => {
       action.payload.forEach(el => {
         businesses[el.id] = el;
       });
-      console.log("from LOAD_BUSINESSES in reducer, businesses:", businesses)
+      // console.log("from LOAD_BUSINESSES in reducer, businesses:", businesses)
       return {
         ...businesses,
         ...state,
@@ -96,7 +96,7 @@ const businessReducer = (state = initialState, action) => {
       };
     case LOAD_ONE_BUSINESS: {
       const newState = {...state};
-      console.log("action:", action)
+      // console.log("action:", action)
       newState[action.payload.id] = action.payload;
       return newState;
     }

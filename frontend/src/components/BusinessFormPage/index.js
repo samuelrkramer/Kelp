@@ -1,20 +1,21 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect, useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { fetchOneBusiness, createBusiness, editBusiness } from '../../store/business';
 
 
 const BusinessFormPage = ({mode}) => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const sessionUser = useSelector(state => state.session.user);
   
   let { businessId } = useParams();
-  const oldBusiness = useSelector(state => state.business[businessId])
+  const oldBusiness = useSelector(state => state.business[businessId || 1])
   let business = {};
   
   if (mode === "Edit") {
     businessId = parseInt(businessId);
-    console.log("businessId", businessId, typeof(businessId))
+    // console.log("businessId", businessId, typeof(businessId))
     // placeholder until there's actual DB/store functionality for businesses
     // const business = {};
     business = {...oldBusiness};
@@ -29,7 +30,7 @@ const BusinessFormPage = ({mode}) => {
   const [zipCode, setZipCode] = useState(business.zipCode || "");
   const [lat, setLat] = useState(business.lat || "");
   const [lng, setLng] = useState(business.lng || "");
-  const [errors, setErrors] = useState([]);
+  // const [errors, setErrors] = useState([]);
 
   const nums = (input) => input.replace(/\D/,'');
   const coords = (input) => input.replace(/[^\d\-\.NnSsEeWw\s]/,'');
@@ -46,10 +47,10 @@ const BusinessFormPage = ({mode}) => {
   //   setLng("");
   // }
   
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
-    alert("caught submit");
-    setErrors([]);
+    // alert("caught submit");
+    // setErrors([]);
     const newBusiness = {
       title, description,
       imgUrl, address,
@@ -58,26 +59,28 @@ const BusinessFormPage = ({mode}) => {
     }
     let thunkResult;
     if (mode === "Create") {
-      thunkResult = dispatch(createBusiness( newBusiness ));
+      thunkResult = await dispatch(createBusiness( newBusiness ));
     }
     else if (mode === "Edit") {
-      thunkResult = dispatch(editBusiness( newBusiness, businessId ))
+      thunkResult = await dispatch(editBusiness( newBusiness, businessId ))
     }
-    return thunkResult.catch(async (res) => {
-      const data = await res.json();
-      if (data && data.errors) setErrors(data.errors)
-    });
+    // const idk = await thunkResult.body;
+    // const result = thunkResult.catch(async (res) => {
+    //   const data = await res.json();
+    //   if (data && data.errors) setErrors(data.errors)
+    // });
+    // console.log("BusinessForm thunkResult:", thunkResult);
+    // console.log("idk:", idk)
+    history.push(`/business/${thunkResult.id}`);
   }
 
-  useEffect(() => {
-    console.log("useEffect on BusinessForm fired")
-    dispatch(fetchOneBusiness(businessId));
-    console.log("... after dispatch, BusinessForm component")
-  }, [businessId, dispatch])
+  // useEffect(() => {
+  //   console.log("useEffect on BusinessForm fired")
+  //   dispatch(fetchOneBusiness(businessId));
+  //   console.log("... after dispatch, BusinessForm component")
+  // }, [businessId, dispatch])
 
-  if (!sessionUser) return (
-    <Redirect to="/login" />
-  );
+  if (!sessionUser) history.push("/login");
 
   return (
     <>

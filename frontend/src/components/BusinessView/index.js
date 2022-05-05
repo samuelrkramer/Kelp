@@ -1,10 +1,12 @@
 import { useEffect } from "react";
-import { useParams, Redirect } from "react-router-dom";
+import { useParams, Redirect, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchOneBusiness } from "../../store/business";
 
 const BusinessView = () => {
   const dispatch = useDispatch();
+  const sessionUser = useSelector(state => state.session.user);
+
   // const { businessIdStr } = useParams();
   let { businessId } = useParams();
   businessId = parseInt(businessId);
@@ -19,13 +21,13 @@ const BusinessView = () => {
     // };
 
   useEffect(() => {
-    console.log("useEffect on BusinessView fired")
+    // console.log("useEffect on BusinessView fired")
     dispatch(fetchOneBusiness(businessId));
-    console.log("... after dispatch, BusinessView component")
+    // console.log("... after dispatch, BusinessView component")
   }, [businessId, dispatch])
 
   if (!business) {
-    console.log("no business, returning null from BusinessView component")
+    // console.log("no business, returning null from BusinessView component")
     return (<Redirect to="/" />);
   }
 
@@ -34,9 +36,12 @@ const BusinessView = () => {
       {business.imgUrl && (<img src={business.imgUrl} alt={business.title} />)}
       <h1>{business.title}</h1>
       <p>
-        {business.address}
+        {business.address}<br />
         {business.city}, {business.state} {business.zipCode}
       </p>
+      {sessionUser && business.ownerId === sessionUser.id && (
+        <Link to={`/editBusiness/${businessId}`}>Edit</Link>
+      )}
     </div>
   );
 };
