@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
-import { fetchOneBusiness, createBusiness, editBusiness } from '../../store/business';
+import { fetchOneBusiness, createBusiness, editBusiness, deleteBusiness } from '../../store/business';
 
 
 const BusinessFormPage = ({mode}) => {
@@ -72,6 +72,16 @@ const BusinessFormPage = ({mode}) => {
     // console.log("BusinessForm thunkResult:", thunkResult);
     // console.log("idk:", idk)
     history.push(`/business/${thunkResult.id}`);
+  }
+
+  const handleDelete = async e => {
+    e.preventDefault();
+    const result = await dispatch(deleteBusiness(businessId));
+    // console.log("result",result);
+    // console.log("await result:",await result);
+    // if (result) {}
+    history.push("/");
+    // }
   }
 
   // useEffect(() => {
@@ -168,6 +178,9 @@ const BusinessFormPage = ({mode}) => {
           />
         </label>
         <button type="submit">Submit</button>
+        {mode === "Edit" && (
+          <button onClick={e => handleDelete(e)}>Delete</button>
+        )}
       </form>
     </>
   );
