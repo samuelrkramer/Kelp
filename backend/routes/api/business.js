@@ -1,6 +1,8 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
 
+const { Op } = require('Sequelize');
+
 const { restoreUser } = require('../../utils/auth');
 const { User, Business, Review } = require('../../db/models');
 
@@ -198,6 +200,75 @@ router.delete(
     console.log(result);
 
     return res.json(businessId);
+  })
+);
+
+const validateReview = [
+  check('businessId')
+    .exists({ checkFalsy: true })
+    .notEmpty()
+    .withMessage('Please provide a businessId (and stop forging requests).'),
+  check('rating')
+    .exists({ checkFalsy: true })
+    .notEmpty()
+    .withMessage('Please provide a rating.'),
+  check('answer')
+    .exists({ checkFalsy: true })
+    .notEmpty()
+    .withMessage('Please provide a review.'),
+  handleValidationErrors
+];
+
+// New review
+router.post(
+  '/:businessId(\\d+)/reviews',
+  validateReview,
+  restoreUser,
+  asyncHandler(async (req, res, next) => {
+    const { user } = req;
+    if (!user) {
+      const err = new Error('Must be logged in');
+      err.status = 401;
+      err.title = 'Unauthorized';
+      err.errors = ['Only logged-in users may leave reviews.'];
+      return next(err);
+    }
+
+    const businessId = parseInt(req.params.businessId);
+
+    const { rating, answer, imgUrl } = req.body;
+
+    const newReview = {
+      userId: user.id,
+      businessId, rating,
+      answer, imgUrl
+    }
+
+    const result = await Review.create(newReview);
+
+    res.json(result);
+  })
+);
+
+// All reviews for one business
+router.get(
+  "/:businessId(\\d+)/reviews",
+  asyncHandler(async (req, res, next) => {
+    const businessId = parseInt(req.params.businessId);
+
+    const reviews = await Review.findAll( {
+      where: {
+        'businessId': {
+          [Op.eq]: businessId
+        }
+      },
+      include: [{
+        model: User,
+        attributes: ['id', 'username']
+      }]
+    });
+
+    return res.json( reviews );
   })
 );
 
