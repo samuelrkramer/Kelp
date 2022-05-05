@@ -94,7 +94,7 @@ router.get(
 router.get(
   "/:businessId(\\d+)",
   asyncHandler(async (req, res, next) => {
-    const businessId = req.params.businessId
+    const businessId = req.params.businessId;
     const business = await Business.findByPk(+businessId, {
       include: [{
         model: User,
@@ -107,16 +107,60 @@ router.get(
         }]
       }]
     });
-
-    // if (!business) {
+    
+  // if (!business) {
     //   const err = new Error('Not found');
     //   err.status = 404;
     //   err.title = 'Business not found';
     //   err.errors = ['The business with given ID was not found.'];
     //   return next(err);
     // }
-
+    
     return res.json( business );
+  })
+);
+    
+router.put(
+  "/:businessId(\\d+)",
+  validateBusiness,
+  restoreUser,
+  asyncHandler(async function (req, res) {
+    const businessId = parseInt(req.params.businessId);
+    // console.log("busId", businessId, typeof(businessId))
+    const business = await Business.findByPk(+businessId);
+    // const newBusiness = {...business, ...req.body} // PUT replaces the entire record, not updates individual fields
+    // console.log("req body: ", req.body)
+    // console.log("existing business:",business)
+
+    const { title, description, imgUrl, address, city, state, zipCode, lat, lng } = req.body;
+
+    const { user } = req;
+
+    if (!user) {
+      const err = new Error("Must be logged in");
+      err.status = 401;
+      err.title = "Unauthorized";
+      err.errors = ["Only logged-in users may create a business."];
+      return next(err);
+    }
+    else if (user.id !== business.ownerId) {
+      const err = new Error('Must be business owner');
+      err.status = 403;
+      err.title = "Forbidden";
+      err.errors = ["Only the business owner may edit a business."]
+    }
+
+    const newBusiness = {
+      ownerId: user.id,
+      title, description,
+      imgUrl, address,
+      city, state,
+      zipCode, lat, lng
+    }
+
+    const result = await business.update(newBusiness)
+
+    return res.json(result);
   })
 );
 
