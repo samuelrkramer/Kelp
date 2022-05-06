@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+// import { useHistory } from "react-router-dom";
 import { getBizReviews, deleteReview, createReview } from "../../store/reviews";
 
 const BusReviews = ({ business }) => {
@@ -27,6 +28,17 @@ const BusReviews = ({ business }) => {
     };
 
     const result = await dispatch(createReview(newReview, business.id));
+    if (result) {
+      setShowForm(false);
+      setRating(5);
+      setAnswer("");
+      setImgUrl("");
+    }
+  }
+
+  const handleDelete = async (id) => {
+    const result = dispatch(deleteReview(id, business.id));
+    if (!result) alert("Delete failed");
   }
 
   useEffect(() => {
@@ -76,6 +88,9 @@ const BusReviews = ({ business }) => {
             <p className="answer">
               {rev.answer}<br />
             </p>
+            {rev.User.id === sessionUser.id && (
+              <button onClick={() => handleDelete(rev.id)}>Delete</button>
+            )}
           </div>
         ))}
       </div>

@@ -151,7 +151,7 @@ const businessReducer = (state = initialState, action) => {
         ...state,
         [action.payload.businessId]: {
           ...state[action.payload.businessId],
-          reviews: state[action.payload.reviews].items.filter(
+          reviews: state[action.payload.businessId].reviews.filter(
             (revId) => revId !== action.payload.reviewId
           )
         }
