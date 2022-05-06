@@ -97,41 +97,41 @@ const initialState = {
 const businessReducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
-    case LOAD_BUSINESSES:
-      const businesses = {};
-      action.payload.forEach(el => {
-        businesses[el.id] = el;
+    case LOAD_REVIEWS:
+      const reviews = {};
+      action.payload.reviews.forEach(el => {
+        reviews[el.id] = el;
       });
-      // console.log("from LOAD_BUSINESSES in reducer, businesses:", businesses)
+      // need to double comment that line as a relic from business reducer
+      // // console.log("from LOAD_BUSINESSES in reducer, businesses:", businesses)
       return {
-        ...businesses,
+        ...reviews,
         ...state,
         // list: action.list
       };
-    case LOAD_ONE_BUSINESS: {
-      const newState = {...state};
-      // console.log("action:", action)
-      newState[action.payload.id] = action.payload;
-      return newState;
-    }
-    case ADD_BUSINESS: {
+    // case LOAD_ONE_BUSINESS: {
+    //   const newState = {...state};
+    //   // console.log("action:", action)
+    //   newState[action.payload.id] = action.payload;
+    //   return newState;
+    // }
+    case ADD_REVIEW: {
       const newState = {
         ...state,
-        [action.payload.id]: action.payload
+        [action.payload.review.id]: action.payload.review
       };
-      // const businesses = newState.list.map(id => newState[id]);
-      // businesses.push(action.business);
       return newState;
     }
-    case UPDATE_BUSINESS: {
-      const newState = {
-        ...state,
-        [action.payload.id]: action.payload.data
-      }
-    }
-    case DELETE_BUSINESS: {
+    // not until I add a U to the CRD for reviews
+    // // case UPDATE_BUSINESS: {
+    // //   const newState = {
+    // //     ...state,
+    // //     [action.payload.id]: action.payload.data
+    // //   }
+    // // }
+    case DELETE_REVIEW: {
       const newState = {...state};
-      delete newState[action.payload]
+      delete newState[action.payload.reviewId]
       return newState;
     }
     default:
