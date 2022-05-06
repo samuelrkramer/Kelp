@@ -1,10 +1,10 @@
 import { csrfFetch } from './csrf';
 
-const LOAD_REVIEWS = 'reviews/LOAD_REVIEWS';
+export const LOAD_REVIEWS = 'reviews/LOAD_REVIEWS';
 // const LOAD_ONE_BUSINESS = 'business/LOAD_ONE_BUSINESS'
-const ADD_REVIEW = 'reviews/ADD_REVIEW';
+export const ADD_REVIEW = 'reviews/ADD_REVIEW';
 // const UPDATE_BUSINESS = 'business/UPDATE_BUSINESS';
-const DELETE_REVIEW = 'reviews/DELETE_REVIEW';
+export const DELETE_REVIEW = 'reviews/DELETE_REVIEW';
 
 const loadReviews = (reviews, businessId) => ({
   type: LOAD_REVIEWS,
@@ -16,10 +16,10 @@ const loadReviews = (reviews, businessId) => ({
 //   payload: business,
 // });
 
-const addReview = (review) => {
+const addReview = (review, businessId) => {
   return {
     type: ADD_REVIEW,
-    payload: review,
+    payload: { review, businessId },
   };
 };
 
@@ -43,20 +43,9 @@ export const getBizReviews = (businessId) => async dispatch => {
 
   if (response.ok) {
     const reviews = await response.json();
-    dispatch(loadReviews(reviews));
+    dispatch(loadReviews(reviews, businessId));
   }
 }
-
-// export const fetchOneBusiness = (id) => async dispatch => {
-//   // console.log("fetchOneBusiness thunk fired");
-//   const response = await csrfFetch(`/api/business/${id}`)
-  
-//   if (response.ok) {
-//     const business = await response.json();
-//     // console.log("business:", business);
-//     dispatch(loadOneBusiness(business));
-//   }
-// }
 
 export const createReview = (review, businessId) => async (dispatch) => {
   const response = await csrfFetch(`/api/business/${businessId}/reviews`, {
@@ -80,13 +69,13 @@ export const createReview = (review, businessId) => async (dispatch) => {
 //   return data
 // };
 
-export const deleteReview = (id) => async (dispatch) => {
+export const deleteReview = (id, businessId) => async (dispatch) => {
   const response = await csrfFetch(`/api/reviews/${id}`, {
     method: "DELETE"
   });
   if (response.ok) {
     const delId = await response.json();
-    dispatch(removeReview(delId));
+    dispatch(removeReview(delId, businessId));
   }
 }
 
@@ -94,7 +83,7 @@ const initialState = {
   // list: [],  // possibly more advanced than this project
 };
 
-const businessReducer = (state = initialState, action) => {
+const reviewReducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
     case LOAD_REVIEWS:
