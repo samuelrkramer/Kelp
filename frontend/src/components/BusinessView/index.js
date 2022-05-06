@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useParams, Redirect, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchOneBusiness } from "../../store/business";
+import BusReviews from "../BusReviews";
 
 const BusinessView = () => {
   const dispatch = useDispatch();
@@ -42,6 +43,7 @@ const BusinessView = () => {
       {sessionUser && business.ownerId === sessionUser.id && (
         <Link to={`/editBusiness/${businessId}`}>Edit</Link>
       )}
+      <BusReviews business={ business } />
     </div>
   );
 };

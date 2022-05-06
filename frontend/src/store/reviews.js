@@ -128,4 +128,4 @@ const reviewReducer = (state = initialState, action) => {
   }
 };
 
-export default businessReducer;
+export default reviewReducer;

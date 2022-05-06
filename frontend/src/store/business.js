@@ -138,7 +138,7 @@ const businessReducer = (state = initialState, action) => {
       delete newState[action.payload]
       return newState;
     }
-    case LOAD_ITEMS: {
+    case LOAD_REVIEWS: {
       const newState = { ...state };
       newState[action.payload.businessId] = {
         ...state[action.payload.businessId],
