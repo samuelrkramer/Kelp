@@ -63,6 +63,11 @@ router.post(
       zipCode, lat, lng
     }
 
+    if (!lat || !lng) {
+      newBusiness.lat = null;
+      newBusiness.lng = null;
+    }
+
     const result = await Business.create(newBusiness);
 
     res.json(result);
@@ -160,6 +165,12 @@ router.put(
       city, state,
       zipCode, lat, lng
     }
+
+    if (!lat || !lng) {
+      newBusiness.lat = null;
+      newBusiness.lng = null;
+    }
+
     const result = await business.update(newBusiness)
 
     return res.json(result);
