@@ -27,7 +27,7 @@ const BusReviews = ({ business }) => {
       rating, answer, imgUrl
     };
 
-    const result = await dispatch(createReview(newReview, business.id));
+    const result = await dispatch(createReview(newReview, business.id, sessionUser));
     if (result) {
       setShowForm(false);
       setRating(5);
