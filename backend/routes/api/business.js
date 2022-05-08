@@ -101,14 +101,14 @@ router.get(
 router.get(
   "/:businessId(\\d+)",
   asyncHandler(async (req, res, next) => {
-    const businessId = req.params.businessId;
-    const business = await Business.findByPk(+businessId, {
+    const businessId = parseInt(req.params.businessId);
+    const business = await Business.findByPk(businessId, {
       include: [{
       //   model: User,
       //   attributes: ['id', 'username']
       // }, {
         model: Review,
-        attributes: 'id',
+        attributes: ['id'],
       //   include: [{
       //     model: User,
           // attributes: ['id', 'username']

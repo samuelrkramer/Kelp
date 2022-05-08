@@ -23,7 +23,8 @@ const BusinessView = () => {
 
   useEffect(() => {
     // console.log("useEffect on BusinessView fired")
-    dispatch(fetchOneBusiness(businessId));
+    if (!business) dispatch(fetchOneBusiness(businessId));
+    // dispatch(getBizReviews(businessId));
     // console.log("... after dispatch, BusinessView component")
   }, [businessId, dispatch])
 
