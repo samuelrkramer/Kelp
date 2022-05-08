@@ -24,7 +24,7 @@ function App() {
         <Switch>
           <Route exact path="/">
             <SplashPage />
-            <ListBusinesses />
+            {/* <ListBusinesses /> */}
           </Route>
           <Route exact path="/business">
             <ListBusinesses />
