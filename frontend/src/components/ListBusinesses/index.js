@@ -6,13 +6,13 @@ import { getBusinesses } from "../../store/business";
 const ListBusinesses = () => {
   const dispatch = useDispatch();
   const businesses = useSelector(state => state.business)
-  console.log(typeof(businesses), businesses);
+  // console.log(typeof(businesses), businesses);
   const bizIds = Object.keys(businesses);
 
   useEffect(() => {
-    console.log("useEffect on ListBusinesses fired")
+    // console.log("useEffect on ListBusinesses fired")
     dispatch(getBusinesses());
-    console.log("... after dispatch, ListBusinesses component")
+    // console.log("... after dispatch, ListBusinesses component")
   }, [dispatch])
 
   return (

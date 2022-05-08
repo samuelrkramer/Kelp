@@ -103,16 +103,17 @@ router.get(
   asyncHandler(async (req, res, next) => {
     const businessId = req.params.businessId;
     const business = await Business.findByPk(+businessId, {
-      // include: [{
+      include: [{
       //   model: User,
       //   attributes: ['id', 'username']
       // }, {
-      //   model: Review,
+        model: Review,
+        attributes: 'id',
       //   include: [{
       //     model: User,
-      //     attributes: ['id', 'username']
+          // attributes: ['id', 'username']
       //   }]
-      // }]
+      }]
     });
     
   // if (!business) {

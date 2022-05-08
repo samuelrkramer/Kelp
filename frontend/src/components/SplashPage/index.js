@@ -15,10 +15,10 @@ for (let el of bgPaths) {
 
 const SplashPage = () => {
   const [bgNum, setBgNum] = useState(0);
-  console.log("new bg img", bgImgs[bgNum])
+  // console.log("new bg img", bgImgs[bgNum])
   
   useEffect(() => {
-    console.log("bgImgs:", bgImgs); 
+    // console.log("bgImgs:", bgImgs); 
     // let i = 0;
     const bgInterval = setInterval(() => {
       // i = (i + 1) % bgImgs.length;
