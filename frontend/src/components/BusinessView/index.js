@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useParams, Redirect, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchOneBusiness } from "../../store/business";
+import BusReviews from "../BusReviews";
 
 const BusinessView = () => {
   const dispatch = useDispatch();
@@ -22,7 +23,8 @@ const BusinessView = () => {
 
   useEffect(() => {
     // console.log("useEffect on BusinessView fired")
-    dispatch(fetchOneBusiness(businessId));
+    if (!business) dispatch(fetchOneBusiness(businessId));
+    // dispatch(getBizReviews(businessId));
     // console.log("... after dispatch, BusinessView component")
   }, [businessId, dispatch])
 
@@ -42,6 +44,7 @@ const BusinessView = () => {
       {sessionUser && business.ownerId === sessionUser.id && (
         <Link to={`/editBusiness/${businessId}`}>Edit</Link>
       )}
+      <BusReviews business={ business } />
     </div>
   );
 };

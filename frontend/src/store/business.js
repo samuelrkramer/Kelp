@@ -1,3 +1,4 @@
+import { LOAD_REVIEWS, ADD_REVIEW, DELETE_REVIEW } from './reviews';
 import { csrfFetch } from './csrf';
 
 const LOAD_BUSINESSES = 'business/LOAD_BUSINESSES';
@@ -137,6 +138,34 @@ const businessReducer = (state = initialState, action) => {
       delete newState[action.payload]
       return newState;
     }
+    case LOAD_REVIEWS: {
+      const newState = { ...state };
+      newState[action.payload.businessId] = {
+        ...state[action.payload.businessId],
+        reviews: action.payload.reviews.map(el => el.id)
+      };
+      return newState;
+    }
+    case DELETE_REVIEW:
+      return {
+        ...state,
+        [action.payload.businessId]: {
+          ...state[action.payload.businessId],
+          reviews: state[action.payload.businessId].reviews.filter(
+            (revId) => revId !== action.payload.reviewId
+          )
+        }
+      };
+
+    case ADD_REVIEW:
+      console.log(action.payload);
+      return {
+        ...state,
+        [action.payload.businessId]: {
+          ...state[action.payload.businessId],
+          reviews: [...state[action.payload.businessId].reviews, action.payload.review.id]
+        }
+      };
     default:
       return state;
   }
