@@ -1,7 +1,7 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
 
-const { Op } = require('Sequelize');
+const { Op } = require('sequelize');
 
 const { restoreUser } = require('../../utils/auth');
 const { User, Business, Review } = require('../../db/models');
