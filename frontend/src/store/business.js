@@ -132,6 +132,7 @@ const businessReducer = (state = initialState, action) => {
         ...state,
         [action.payload.id]: action.payload.data
       }
+      return newState;
     }
     case DELETE_BUSINESS: {
       const newState = {...state};

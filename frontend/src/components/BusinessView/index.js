@@ -41,6 +41,9 @@ const BusinessView = () => {
         {business.address}<br />
         {business.city}, {business.state} {business.zipCode}
       </p>
+      <p>
+        {business.description}
+      </p>
       {sessionUser && business.ownerId === sessionUser.id && (
         <Link to={`/editBusiness/${businessId}`}>Edit</Link>
       )}
