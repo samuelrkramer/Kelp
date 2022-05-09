@@ -15,3 +15,8 @@
 .busCard .busCardImg {
   align-self: center;
 }
+
+.busLocation {
+  font-size: smaller;
+  color: darkslategrey;
+}

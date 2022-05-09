@@ -31,7 +31,9 @@ const ListBusinesses = () => {
               maxWidth: "150px"
             }}/><br />
             <Link to={`/business/${businesses[el].id}`}>{businesses[el].title}</Link><br />
-            ({businesses[el].city}, {businesses[el].state})
+            <span className="busLocation">
+              ({businesses[el].city}, {businesses[el].state})
+            </span>
           </div>
         )) }
       </div>

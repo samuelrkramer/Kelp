@@ -17,6 +17,10 @@ const SplashPage = () => {
   const [bgNum, setBgNum] = useState(0);
   // console.log("new bg img", bgImgs[bgNum])
   const [search, setSearch] = useState("");
+
+  const handleSearch = e => {
+    e.preventDefault();
+  }
   
   useEffect(() => {
     // console.log("bgImgs:", bgImgs); 
@@ -44,11 +48,16 @@ const SplashPage = () => {
       <div className="splashContent">
         <Link to="/business" className="logo splashLogo">kelp🌿</Link>
         <div className="searchbar">
-          <form onSubmit={e => e.preventDefault()}>
-          Find
-          <input type="text" name="search" placeholder="Coming soon..."
-          value={search} onChange={e => setSearch(e.target.value)} />
-          <button onClick={e => e.preventDefault()}>🔍</button>
+          <form onSubmit={handleSearch}>
+            Find
+            <input
+              type="text"
+              name="search"
+              placeholder="Coming soon..."
+              value={search}
+              onChange={e => setSearch(e.target.value)}
+            />
+            <button type="submit">🔍</button>
           </form>
         </div>
         {/* <h1>Splash Page</h1> */}

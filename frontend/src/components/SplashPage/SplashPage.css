@@ -76,11 +76,17 @@
     -2px -1px 0 #fff;
 }
 
+.splashContent {
+  text-align: center;
+}
+
 .searchbar {
   background-color: #ddd;
   vertical-align: middle;
-  min-width: 75%;
+  min-width: 70vw;
 
+  border-radius: 5px;
+  border: solid 1px #ddd;
   padding: 4px 16px;
 
   color: grey
@@ -90,7 +96,19 @@
   background-color: #ddd;
 }
 .searchbar form {
-  display: flex;
-  flex-direction: row;
-  align-content: space-between;
+  display: grid;
+  grid-template-columns: 45px 1fr 15px;
+  text-align: left;
+  font-size: 1.5em;
+
+  /* flex-direction: row; */
+  /* align-content: space-between; */
+  /* vertical-align: baseline; */
+}
+
+.searchbar input {
+  margin-left: 2em;
+}
+.searchbar button {
+  font-size: 1em;
 }
