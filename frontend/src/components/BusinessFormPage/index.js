@@ -32,8 +32,9 @@ const BusinessFormPage = ({mode}) => {
   const [lng, setLng] = useState(business.lng || "");
   const [errors, setErrors] = useState([]);
 
-  const nums = (input) => input.replace(/\D/,'');
+  const zip = (input) => input.replace(/\D/,'').slice(0,5);
   const coords = (input) => input.replace(/[^\d\-\.NnSsEeWw\s]/,'');
+  const usState = (input) => input.replace(/[^a-zA-Z]/,'').slice(0,2)
 
   // const resetForm = () => {
   //   setTitle("");
@@ -163,7 +164,7 @@ const BusinessFormPage = ({mode}) => {
               type="text"
               name="state"
               value={state}
-              onChange={e => setState(e.target.value)}
+              onChange={e => setState(usState(e.target.value))}
               />
           </label>
           <label>
@@ -172,7 +173,7 @@ const BusinessFormPage = ({mode}) => {
               type="text"
               name="zipCode"
               value={zipCode}
-              onChange={e => setZipCode(nums(e.target.value))}
+              onChange={e => setZipCode(zip(e.target.value))}
               />
           </label>
           <label>
