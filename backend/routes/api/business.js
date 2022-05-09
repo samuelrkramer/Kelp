@@ -20,6 +20,10 @@ const validateBusiness = [
     .exists({ checkFalsy: true })
     .notEmpty()
     .withMessage('Please provide a description.'),
+  check('imgUrl')
+    .optional({ checkFalsy: true })
+    .isURL({ checkFalsy: true })
+    .withMessage("Optional image URL must be an URL"),
   check('address')
     .exists({ checkFalsy: true })
     .notEmpty()
@@ -228,6 +232,10 @@ const validateReview = [
     .exists({ checkFalsy: true })
     .notEmpty()
     .withMessage('Please provide a review.'),
+  check('imgUrl')
+    .optional({ checkFalsy: true })
+    .isURL({ checkFalsy: true })
+    .withMessage("Optional image URL must be an URL"),
   handleValidationErrors
 ];
 
