@@ -59,7 +59,8 @@ const SplashPage = () => {
             />
             <button type="submit">🔍</button>
           </form>
-        </div>
+        </div><br />
+        <Link to="/business">Check out our businesses!</Link>
         {/* <h1>Splash Page</h1> */}
         {/* <p>Background:
           {bgNum}

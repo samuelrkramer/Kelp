@@ -1,3 +1,8 @@
+.businessDiv img {
+  max-width: 70vw;
+  max-height: 60vw;
+}
+
 .pBox {
   display: flex;
 }
