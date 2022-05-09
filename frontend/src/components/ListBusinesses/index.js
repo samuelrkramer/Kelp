@@ -20,22 +20,24 @@ const ListBusinesses = () => {
   }, [dispatch])
 
   return (
-    <div className="businessList">
-      <h1>List of Businesses</h1>
-      <div className="busCardList">
-        { bizIds.map(el => (
-          <div className="busCard" key={el}>
-            <img src={businesses[el].imgUrl || noimg} alt="Image"
-            className="busCardImg" style={{
-              maxHeight: "150px",
-              maxWidth: "150px"
-            }}/><br />
-            <Link to={`/business/${businesses[el].id}`}>{businesses[el].title}</Link><br />
-            <span className="busLocation">
-              ({businesses[el].city}, {businesses[el].state})
-            </span>
-          </div>
-        )) }
+    <div className="contentBox">
+      <div className="businessList">
+        <h1>List of Businesses</h1>
+        <div className="busCardList">
+          { bizIds.map(el => (
+            <div className="busCard" key={el}>
+              <img src={businesses[el].imgUrl || noimg} alt="Image"
+              className="busCardImg" style={{
+                maxHeight: "150px",
+                maxWidth: "150px"
+              }}/><br />
+              <Link to={`/business/${businesses[el].id}`}>{businesses[el].title}</Link><br />
+              <span className="busLocation">
+                ({businesses[el].city}, {businesses[el].state})
+              </span>
+            </div>
+          )) }
+        </div>
       </div>
     </div>
   );

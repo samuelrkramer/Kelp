@@ -34,20 +34,22 @@ const BusinessView = () => {
   }
 
   return (
-    <div className="businessDiv">
-      {!(!business.imgUrl) && (<img src={business.imgUrl} alt={business.title} />)}
-      <h1>{business.title}</h1>
-      <p>
-        {business.address}<br />
-        {business.city}, {business.state} {business.zipCode}
-      </p>
-      <p>
-        {business.description}
-      </p>
-      {sessionUser && business.ownerId === sessionUser.id && (
-        <Link to={`/editBusiness/${businessId}`}>Edit</Link>
-      )}
-      <BusReviews business={ business } />
+    <div className="contentBox">
+      <div className="businessDiv">
+        {!(!business.imgUrl) && (<img src={business.imgUrl} alt={business.title} />)}
+        <h1>{business.title}</h1>
+        <p>
+          {business.address}<br />
+          {business.city}, {business.state} {business.zipCode}
+        </p>
+        <p>
+          {business.description}
+        </p>
+        {sessionUser && business.ownerId === sessionUser.id && (
+          <Link to={`/editBusiness/${businessId}`}>Edit</Link>
+          )}
+        <BusReviews business={ business } />
+      </div>
     </div>
   );
 };

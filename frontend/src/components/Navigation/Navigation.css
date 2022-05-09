@@ -3,6 +3,8 @@ html, body, .root {
   height: 100vw;
   border: 0 0;
   margin: 0 0;
+
+  /* align-content: center; */
   
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -90,6 +92,7 @@ a:active {
 
 .sessionLinks ul {
   float: right;
+  width: 100%;
 }
 
 .navbar > ul {
@@ -107,6 +110,9 @@ a:active {
 .sessionLinks > button {
   height: 3em;
   width: 3em;
+  background-color: #0000;
+  border: solid 2px navy;
+  border-radius: 3px;
 }
 
 .navbar ul li {
@@ -118,4 +124,9 @@ a:active {
 
 a.active {
   font-weight: bold;
+}
+
+.contentBox {
+  /* width: 80vw; */
+  margin: 0 10vw;
 }

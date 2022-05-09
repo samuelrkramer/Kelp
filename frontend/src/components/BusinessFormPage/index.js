@@ -102,101 +102,103 @@ const BusinessFormPage = ({mode}) => {
 
   return (
     <>
-      <h1>{mode} a business</h1>
-      <form onSubmit={handleSubmit}>
-        {errors.length > 0 && (
-          <ul>
-          {errors.map((error, i) => (
-            <li key={i}>{error}</li>
-            ))}
-          </ul> 
-        )}
-        <label>
-          Title
-          <input
-            type="text"
-            name="title"
-            value={title}
-            onChange={e => setTitle(e.target.value)}
-          />
-        </label>
-        <label>
-          Description
-          <textarea
-            name="description"
-            value={description}
-            onChange={e => setDescription(e.target.value)}
-          />
-        </label>
-        <label>
-          Image URL
-          <input
-            type="text"
-            name="imgUrl"
-            value={imgUrl}
-            onChange={e => setImgUrl(e.target.value)}
-            placeholder="http://example.com/image.jpg"
-          />
-        </label>
-        <label>
-          Address
-          <input
-            type="text"
-            name="address"
-            value={address}
-            onChange={e => setAddress(e.target.value)}
-          />
-        </label>
-        <label>
-          City
-          <input
-            type="text"
-            name="city"
-            value={city}
-            onChange={e => setCity(e.target.value)}
-          />
-        </label>
-        <label>
-          State
-          <input
-            type="text"
-            name="state"
-            value={state}
-            onChange={e => setState(e.target.value)}
-          />
-        </label>
-        <label>
-          Zip Code
-          <input
-            type="text"
-            name="zipCode"
-            value={zipCode}
-            onChange={e => setZipCode(nums(e.target.value))}
-          />
-        </label>
-        <label>
-          Latitude
-          <input
-            type="text"
-            name="lat"
-            value={lat}
-            onChange={e => setLat(coords(e.target.value))}
-          />
-        </label>
-        <label>
-          Longitude
-          <input
-            type="text"
-            name="lng"
-            value={lng}
-            onChange={e => setLng(coords(e.target.value))}
-          />
-        </label>
-        <button type="submit">Submit</button>
-        {mode === "Edit" && (
-          <button onClick={e => handleDelete(e)}>Delete</button>
-        )}
-      </form>
+      <div className="contentBox">
+        <h1>{mode} a business</h1>
+        <form onSubmit={handleSubmit}>
+          {errors.length > 0 && (
+            <ul>
+            {errors.map((error, i) => (
+              <li key={i}>{error}</li>
+              ))}
+            </ul> 
+          )}
+          <label>
+            Title
+            <input
+              type="text"
+              name="title"
+              value={title}
+              onChange={e => setTitle(e.target.value)}
+              />
+          </label>
+          <label>
+            Description
+            <textarea
+              name="description"
+              value={description}
+              onChange={e => setDescription(e.target.value)}
+              />
+          </label>
+          <label>
+            Image URL
+            <input
+              type="text"
+              name="imgUrl"
+              value={imgUrl}
+              onChange={e => setImgUrl(e.target.value)}
+              placeholder="http://example.com/image.jpg"
+              />
+          </label>
+          <label>
+            Address
+            <input
+              type="text"
+              name="address"
+              value={address}
+              onChange={e => setAddress(e.target.value)}
+              />
+          </label>
+          <label>
+            City
+            <input
+              type="text"
+              name="city"
+              value={city}
+              onChange={e => setCity(e.target.value)}
+              />
+          </label>
+          <label>
+            State
+            <input
+              type="text"
+              name="state"
+              value={state}
+              onChange={e => setState(e.target.value)}
+              />
+          </label>
+          <label>
+            Zip Code
+            <input
+              type="text"
+              name="zipCode"
+              value={zipCode}
+              onChange={e => setZipCode(nums(e.target.value))}
+              />
+          </label>
+          <label>
+            Latitude
+            <input
+              type="text"
+              name="lat"
+              value={lat}
+              onChange={e => setLat(coords(e.target.value))}
+              />
+          </label>
+          <label>
+            Longitude
+            <input
+              type="text"
+              name="lng"
+              value={lng}
+              onChange={e => setLng(coords(e.target.value))}
+              />
+          </label>
+          <button type="submit">Submit</button>
+          {mode === "Edit" && (
+            <button onClick={e => handleDelete(e)}>Delete</button>
+            )}
+        </form>
+      </div>
     </>
   );
 };
