@@ -31,7 +31,7 @@ function Navigation({ isLoaded }){
         {/* <li>
           <NavLink exact to="/">Home</NavLink>
         </li> */}
-        <li>
+        <li className="navLinks">
           { sessionUser && (
             <>
             <NavLink to="/newBusiness">Add Business</NavLink>
@@ -42,8 +42,8 @@ function Navigation({ isLoaded }){
         {/* <li> */}
           <NavLink to="/business">All Businesses</NavLink> 
         </li>
-        <li>
-          <div className="sessionLinks">
+        <li className="sessionLinks">
+          <div className="sessionLinksDiv">
             {isLoaded && sessionLinks}
           </div>
         </li>

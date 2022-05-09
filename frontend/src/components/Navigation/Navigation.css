@@ -90,9 +90,16 @@ a:active {
   color:black;
 }
 
-.sessionLinks ul {
+.sessionLinks {
+  float: right;
+  position: absolute;
+  right: 10px;
+}
+
+.sessionLinksDiv ul {
   float: right;
   width: 100%;
+  background-color: #ddd8;
 }
 
 .navbar > ul {
@@ -104,10 +111,10 @@ a:active {
   /* align-content: space-between; */
 }
 
-.sessionLinks ul {
+.sessionLinksDiv ul {
   padding: 0 0;
 }
-.sessionLinks > button {
+.sessionLinksDiv > button {
   height: 3em;
   width: 3em;
   background-color: #0000;
