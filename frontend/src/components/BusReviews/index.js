@@ -11,6 +11,7 @@ const BusReviews = ({ business }) => {
   const [answer, setAnswer] = useState("");
   const [imgUrl, setImgUrl] = useState("");
   const [showForm, setShowForm] = useState(false);
+  const [errors, setErrors] = useState([]);
 
   const reviews = useSelector(state => {
     if (!business.reviews) return null;
@@ -27,12 +28,17 @@ const BusReviews = ({ business }) => {
       rating, answer, imgUrl
     };
 
-    const result = await dispatch(createReview(newReview, business.id, sessionUser));
-    if (result) {
-      setShowForm(false);
-      setRating(5);
-      setAnswer("");
-      setImgUrl("");
+    try {
+      const result = await dispatch(createReview(newReview, business.id, sessionUser));
+      if (result) {
+        setShowForm(false);
+        setRating(5);
+        setAnswer("");
+        setImgUrl("");
+      }
+    } catch (err) {
+      const data = await err.json();
+      if (data && data.errors) setErrors(data.errors);
     }
   }
 
@@ -50,6 +56,13 @@ const BusReviews = ({ business }) => {
       {showForm && (
         <div className="revFormBox">
         <form onSubmit={handleSubmit}>
+          {errors.length > 0 && (
+            <ul>
+            {errors.map((error, i) => (
+              <li key={i}>{error}</li>
+              ))}
+            </ul>
+          )}
           <label>Rating
             <input
               name="rating"
