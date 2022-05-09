@@ -44,10 +44,12 @@ const SplashPage = () => {
       <div className="splashContent">
         <Link to="/business" className="logo splashLogo">kelp🌿</Link>
         <div className="searchbar">
+          <form onSubmit={e => e.preventDefault()}>
           Find
           <input type="text" name="search" placeholder="Coming soon..."
           value={search} onChange={e => setSearch(e.target.value)} />
           <button onClick={e => e.preventDefault()}>🔍</button>
+          </form>
         </div>
         {/* <h1>Splash Page</h1> */}
         {/* <p>Background:

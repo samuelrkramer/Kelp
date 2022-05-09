@@ -76,6 +76,11 @@ a:active {
   -2px 1px 0 #fff,
   2px -1px 0 #fff,
   -2px -1px 0 #fff; */
+
+  width: 120px;
+}
+.logo a, .logo a:visited, .logo a:active {
+  color:black;
 }
 
 .sessionLinks ul {

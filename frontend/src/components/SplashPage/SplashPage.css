@@ -77,9 +77,20 @@
 }
 
 .searchbar {
-  background-color: #fff;
+  background-color: #ddd;
   vertical-align: middle;
   min-width: 75%;
 
+  padding: 4px 16px;
+
   color: grey
+}
+.searchbar * {
+  border: none;
+  background-color: #ddd;
+}
+.searchbar form {
+  display: flex;
+  flex-direction: row;
+  align-content: space-between;
 }

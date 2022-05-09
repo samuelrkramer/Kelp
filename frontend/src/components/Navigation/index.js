@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
@@ -26,11 +26,11 @@ function Navigation({ isLoaded }){
 
   return (
     <div className="navbar">
-      {/* <Link to="/" className="logo">kelp🌿</Link> */}
+      <Link to="/" className="logo">kelp🌿</Link>
       <ul>
-        <li>
+        {/* <li>
           <NavLink exact to="/">Home</NavLink>
-        </li>
+        </li> */}
         <li>
           { sessionUser && (
             <>
