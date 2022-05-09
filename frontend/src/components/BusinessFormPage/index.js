@@ -30,7 +30,7 @@ const BusinessFormPage = ({mode}) => {
   const [zipCode, setZipCode] = useState(business.zipCode || "");
   const [lat, setLat] = useState(business.lat || "");
   const [lng, setLng] = useState(business.lng || "");
-  // const [errors, setErrors] = useState([]);
+  const [errors, setErrors] = useState([]);
 
   const nums = (input) => input.replace(/\D/,'');
   const coords = (input) => input.replace(/[^\d\-\.NnSsEeWw\s]/,'');
@@ -50,19 +50,28 @@ const BusinessFormPage = ({mode}) => {
   const handleSubmit = async e => {
     e.preventDefault();
     // alert("caught submit");
-    // setErrors([]);
+    setErrors([]);
     const newBusiness = {
       title, description,
       imgUrl, address,
       city, state,
       zipCode, lat, lng
     }
-    let thunkResult;
-    if (mode === "Create") {
-      thunkResult = await dispatch(createBusiness( newBusiness ));
-    }
-    else if (mode === "Edit") {
-      thunkResult = await dispatch(editBusiness( newBusiness, businessId ))
+    try {
+      let thunkResult;
+      if (mode === "Create") {
+        thunkResult = await dispatch(createBusiness( newBusiness ));
+      }
+      else if (mode === "Edit") {
+        thunkResult = await dispatch(editBusiness( newBusiness, businessId ))
+      }
+      // console.log("thunkResult:", thunkResult);
+      // const data = await thunkResult;
+      // console.log("data:", data);
+      history.push(`/business/${thunkResult.id}`);
+    } catch (err) {
+      const data = await err.json();
+      if (data && data.errors) setErrors(data.errors);
     }
     // const idk = await thunkResult.body;
     // const result = thunkResult.catch(async (res) => {
@@ -71,7 +80,6 @@ const BusinessFormPage = ({mode}) => {
     // });
     // console.log("BusinessForm thunkResult:", thunkResult);
     // console.log("idk:", idk)
-    history.push(`/business/${thunkResult.id}`);
   }
 
   const handleDelete = async e => {
@@ -96,6 +104,13 @@ const BusinessFormPage = ({mode}) => {
     <>
       <h1>{mode} a business</h1>
       <form onSubmit={handleSubmit}>
+        {errors.length > 0 && (
+          <ul>
+          {errors.map((error, i) => (
+            <li key={i}>{error}</li>
+            ))}
+          </ul> 
+        )}
         <label>
           Title
           <input
