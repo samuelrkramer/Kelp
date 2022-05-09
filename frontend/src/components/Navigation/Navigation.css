@@ -3,30 +3,40 @@ html, body, .root {
   height: 100vw;
   border: 0 0;
   margin: 0 0;
+
+  font-family: Arial, Helvetica, sans-serif;
 }
 .root {
   padding: 10px 10px;
 }
 
-.navbar {
-  border-bottom: solid 1px gray;
-  width: 100%;
-  background: rgba(128,128,128,.4);
-  display: flex;
-  position: sticky;
-  z-index: 2;
+a {
+  text-decoration: none;
+}
+a:visited {
+  color: navy;
+}
+a:active {
+  color: navy;
+  font-weight: bold;
 }
 
-.navbar a {
-  text-decoration: none;
+.navbar {
+  border-bottom: solid 1px gray;
+  width: auto;
+  background: rgba(255, 255, 255, 0.4);
+  display: flex;
+  /* flex-direction: row; */
+  position: sticky;
+  z-index: 2;
 }
 
 @font-face {
   font-family: 'RockoFLF-Bold';
   src:url('../../static/font/RockoFLF-Bold.ttf.woff') format('woff'),
-      url('../../static/font/RockoFLF-Bold.ttf.svg#RockoFLF-Bold') format('svg'),
-      url('../../static/font/RockoFLF-Bold.ttf.eot'),
-      url('../../static/font/RockoFLF-Bold.ttf.eot?#iefix') format('embedded-opentype'); 
+  url('../../static/font/RockoFLF-Bold.ttf.svg#RockoFLF-Bold') format('svg'),
+  url('../../static/font/RockoFLF-Bold.ttf.eot'),
+  url('../../static/font/RockoFLF-Bold.ttf.eot?#iefix') format('embedded-opentype'); 
   font-weight: normal;
   font-style: normal;
 }
@@ -43,42 +53,50 @@ html, body, .root {
   text-shadow: 0 0 3px white;
   margin: 10px 10px;
   /* text-shadow: 1px 1px 0 #fff,
-    -1px 1px 0 #fff,
-    1px -1px 0 #fff,
-    -1px -1px 0 #fff,
-    0px 1px 0 #fff,
-    0px -1px 0 #fff,
-    -1px 0px 0 #fff,
-    1px 0px 0 #fff,
-    2px 2px 0 #fff,
-    -2px 2px 0 #fff,
-    2px -2px 0 #fff,
-    -2px -2px 0 #fff,
-    0px 2px 0 #fff,
-    0px -2px 0 #fff,
-    -2px 0px 0 #fff,
-    2px 0px 0 #fff,
-    1px 2px 0 #fff,
-    -1px 2px 0 #fff,
-    1px -2px 0 #fff,
-    -1px -2px 0 #fff,
-    2px 1px 0 #fff,
-    -2px 1px 0 #fff,
-    2px -1px 0 #fff,
-    -2px -1px 0 #fff; */
+  -1px 1px 0 #fff,
+  1px -1px 0 #fff,
+  -1px -1px 0 #fff,
+  0px 1px 0 #fff,
+  0px -1px 0 #fff,
+  -1px 0px 0 #fff,
+  1px 0px 0 #fff,
+  2px 2px 0 #fff,
+  -2px 2px 0 #fff,
+  2px -2px 0 #fff,
+  -2px -2px 0 #fff,
+  0px 2px 0 #fff,
+  0px -2px 0 #fff,
+  -2px 0px 0 #fff,
+  2px 0px 0 #fff,
+  1px 2px 0 #fff,
+  -1px 2px 0 #fff,
+  1px -2px 0 #fff,
+  -1px -2px 0 #fff,
+  2px 1px 0 #fff,
+  -2px 1px 0 #fff,
+  2px -1px 0 #fff,
+  -2px -1px 0 #fff; */
 }
 
-ul {
-  width: 1fr;
+.sessionLinks ul {
+  /* position: */
+  float: right;
+}
+
+.navbar > ul {
+  /* width: 1fr; */
+  width: 100vw;
   padding: 0 0;
   list-style-type: none;
-}
-
-ul li {
-  width: 100%;
-  list-style: none;
   display: flex;
   align-content: space-between;
+}
+
+.navbar ul li {
+  width: 100%;
+  list-style: none;
+  /* display: flex; */
+  /* align-content: space-between; */
 }
 
 a.active {

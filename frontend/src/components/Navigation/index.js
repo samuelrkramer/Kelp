@@ -28,17 +28,24 @@ function Navigation({ isLoaded }){
     <div className="navbar">
       {/* <Link to="/" className="logo">kelp🌿</Link> */}
       <ul>
-        { sessionUser && (
-          <li>
-            <NavLink to="/newBusiness">Add your business</NavLink>
-          </li>
-        )}
-        <li>
-          <NavLink to="/business">View all businesses</NavLink> 
-        </li>
         <li>
           <NavLink exact to="/">Home</NavLink>
-          {isLoaded && sessionLinks}
+        </li>
+        <li>
+          { sessionUser && (
+            <>
+            <NavLink to="/newBusiness">Add Business</NavLink>
+            <> | </>
+            </>
+          // </li>
+        )}
+        {/* <li> */}
+          <NavLink to="/business">All Businesses</NavLink> 
+        </li>
+        <li>
+          <div className="sessionLinks">
+            {isLoaded && sessionLinks}
+          </div>
         </li>
       </ul>
     </div>

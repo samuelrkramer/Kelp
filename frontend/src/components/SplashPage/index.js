@@ -8,7 +8,7 @@ function importAll(r) {
 const bgPaths = importAll(require.context("../../static/bgImgs/", false, /\.(png|jpe?g|svg)$/));
 const bgImgs = [];
 for (let el of bgPaths) {
-  console.log(el);
+  // console.log(el);
   bgImgs.push(el);
   // bgImgs.push(require('../../../..'+el));
 }
@@ -16,6 +16,7 @@ for (let el of bgPaths) {
 const SplashPage = () => {
   const [bgNum, setBgNum] = useState(0);
   // console.log("new bg img", bgImgs[bgNum])
+  const [search, setSearch] = useState("");
   
   useEffect(() => {
     // console.log("bgImgs:", bgImgs); 
@@ -40,12 +41,20 @@ const SplashPage = () => {
       //   // zIndex: 0
       // }}
     >
-      <Link to="/" className="logo splashLogo">kelp🌿</Link>
-      <h1>Splash Page</h1>
-      <p>Background:
-        {bgNum}
-        {bgImgs[bgNum]}
-      </p>
+      <div className="splashContent">
+        <Link to="/business" className="logo splashLogo">kelp🌿</Link>
+        <div className="searchbar">
+          Find
+          <input type="text" name="search" placeholder="Coming soon..."
+          value={search} onChange={e => setSearch(e.target.value)} />
+          <button onClick={e => e.preventDefault()}>🔍</button>
+        </div>
+        {/* <h1>Splash Page</h1> */}
+        {/* <p>Background:
+          {bgNum}
+          {bgImgs[bgNum]}
+        </p> */}
+      </div>
     </div>
   );
 };
