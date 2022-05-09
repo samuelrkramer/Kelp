@@ -1,0 +1,17 @@
+.busCardList {
+  display: flex;
+  flex-wrap: wrap;
+  /* align-content: space-between; */
+}
+
+.busCard {
+  border: 1px solid navy;
+  border-radius: 5px;
+  padding: 5px 5px;
+  margin: 10px;
+  max-width: 180px;
+}
+
+.busCard .busCardImg {
+  align-self: center;
+}
