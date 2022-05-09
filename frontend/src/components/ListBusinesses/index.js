@@ -22,7 +22,7 @@ const ListBusinesses = () => {
   return (
     <div className="contentBox">
       <div className="businessList">
-        <h1>List of Businesses</h1>
+        <h1>All Businesses</h1>
         <div className="busCardList">
           { bizIds.map(el => (
             <div className="busCard" key={el}>

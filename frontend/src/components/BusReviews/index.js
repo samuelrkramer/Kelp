@@ -19,6 +19,8 @@ const BusReviews = ({ business }) => {
   });
   // console.log("reviews in BusReviews:", reviews);
 
+  const buttonComponent = (<button onClick={() => setShowForm(!showForm)}>{showForm?"Cancel":"Leave a"} review</button>)
+
   const handleSubmit = async e => {
     e.preventDefault();
 
@@ -68,7 +70,9 @@ const BusReviews = ({ business }) => {
               name="rating"
               type="number"
               value={rating}
-              onChange={e => setRating(e.target.value)}
+              onChange={e => {
+                if (e.target.value < 6 && e.target.value > 0) setRating(e.target.value)
+              }}
               />
           </label>
           <label>Review
@@ -86,24 +90,30 @@ const BusReviews = ({ business }) => {
               onChange={e => setImgUrl(e.target.value)}
               />
           </label>
-          <button type="submit">Submit</button>
+          <div className="underForm">
+            <button type="submit">Submit</button>
+            {buttonComponent}
+          </div>
         </form>
       </div>
       )}
-      <button onClick={() => setShowForm(!showForm)}>{showForm?"Cancel":"Leave a"} review</button>
+      {/* <button onClick={() => setShowForm(!showForm)}>{showForm?"Cancel":"Leave a"} review</button> */}
+      {!showForm && buttonComponent}
       <div className="reviewContainer">
-        <h2>Reviews go here</h2>
+        <h2>Reviews</h2>
         {business.reviews && reviews.map(rev => (
           <div className="reviewBox" id={`rev${rev.id}`} key={rev.id}>
             {/* {rev.id} */}
             {!(!rev.imgUrl) && (<img src={rev.imgUrl} alt="review image" />)}
-            <div className="rating">{rev.rating}/5 from {rev.User.username}</div>
-            <p className="answer">
-              {rev.answer}<br />
-            </p>
-            {rev.User.id === sessionUser.id && (
-              <button onClick={() => handleDelete(rev.id)}>Delete</button>
-            )}
+            <div className="revNotImg">
+              <div className="rating">{rev.rating}/5 from {rev.User.username}</div>
+              <p className="answer">
+                {rev.answer}<br />
+              </p>
+              {rev.User.id === sessionUser.id && (
+                <button onClick={() => handleDelete(rev.id)}>Delete</button>
+              )}
+            </div>
           </div>
         ))}
       </div>

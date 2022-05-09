@@ -1,0 +1,24 @@
+.pBox {
+  display: flex;
+}
+
+.pBox p {
+  margin: .5em 1em;
+}
+
+.reviewBox {
+  background-color: #fff8;
+  border: solid 1px navy;
+  border-radius: 5px;
+  margin: 1em 2em;
+  padding: 8px 8px;
+
+  display: flex;
+}
+
+.reviewBox img {
+  max-width: 150px;
+  /* max-height: 150px; */
+  padding-right: 8px;
+  border-radius: 10px;
+}

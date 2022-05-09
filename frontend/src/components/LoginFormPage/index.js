@@ -3,7 +3,7 @@ import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
 
-import './LoginForm.css';
+// import './LoginForm.css';
 
 function LoginFormPage() {
   const dispatch = useDispatch();
@@ -60,9 +60,11 @@ function LoginFormPage() {
             required
             />
         </label>
-        <button type="submit">Log In</button>
-        <button onClick={(e) => demoLogin(e)}>Demo</button>
-        <Link to="/signup">Don't have an account? Sign up!</Link>
+        <div className="underForm">
+          <button type="submit">Log In</button>
+          <button onClick={(e) => demoLogin(e)}>Demo</button><br />
+          <Link to="/signup">Don't have an account? Sign up!</Link>
+        </div>
       </form>
     </div>
   );

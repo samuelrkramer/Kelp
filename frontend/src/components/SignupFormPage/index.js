@@ -42,7 +42,7 @@ function SignupFormPage() {
   return (
     <div className="contentBox">
       <form onSubmit={handleSubmit}>
-        {errors.length && (
+        {errors.length>0 && (
           <ul>
             {errors.map((error, idx) => <li key={idx}>{error}</li>)}
           </ul>
@@ -83,9 +83,11 @@ function SignupFormPage() {
             required
           />
         </label>
-        <button type="submit">Sign Up</button>
-        <button onClick={(e) => demoLogin(e)}>Demo</button>
-        <Link to="/login">Have an account? Log in!</Link>
+        <div className="underForm">
+          <button type="submit">Sign Up</button>
+          <button onClick={(e) => demoLogin(e)}>Demo</button><br />
+          <Link to="/login">Have an account? Log in!</Link>
+        </div>
       </form>
     </div>
   );

@@ -193,10 +193,12 @@ const BusinessFormPage = ({mode}) => {
               onChange={e => setLng(coords(e.target.value))}
               />
           </label>
-          <button type="submit">Submit</button>
-          {mode === "Edit" && (
-            <button onClick={e => handleDelete(e)}>Delete</button>
+          <div className="underForm">
+            <button type="submit">Submit</button>
+            {mode === "Edit" && (
+              <button onClick={e => handleDelete(e)}>Delete</button>
             )}
+          </div>
         </form>
       </div>
     </>

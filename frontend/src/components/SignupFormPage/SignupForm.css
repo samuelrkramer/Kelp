@@ -5,7 +5,15 @@ form {
   grid-template-columns: 1fr 1fr; */
   justify-content: center;
   border: solid 2px black;
+  border-radius: 5px;
   padding: 5px 5px;
+  background-color: #fff8;
+}
+
+form label {
+  display: flex;
+  flex-direction: column;
+  margin: .5em .5em;
 }
 
 form ul:empty {
@@ -23,6 +31,13 @@ label {
   font-family: Arial, Helvetica, sans-serif;
   /* padding-right: 10px; */
 }
-form button {
-  max-width: 70px;
+
+.underForm {
+  width: 100%;
+  text-align: center;
+}
+
+.underForm button {
+  min-width: 85px;
+  margin: .5em 1em;
 }

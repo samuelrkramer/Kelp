@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchOneBusiness } from "../../store/business";
 import BusReviews from "../BusReviews";
 
+import "./BusinessView.css"
+
 const BusinessView = () => {
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
@@ -38,16 +40,18 @@ const BusinessView = () => {
       <div className="businessDiv">
         {!(!business.imgUrl) && (<img src={business.imgUrl} alt={business.title} />)}
         <h1>{business.title}</h1>
-        <p>
-          {business.address}<br />
-          {business.city}, {business.state} {business.zipCode}
-        </p>
-        <p>
-          {business.description}
-        </p>
         {sessionUser && business.ownerId === sessionUser.id && (
-          <Link to={`/editBusiness/${businessId}`}>Edit</Link>
-          )}
+          <Link to={`/editBusiness/${businessId}`}>Edit Business</Link>
+        )}
+        <div className="pBox">
+          <p>
+            {business.address}<br />
+            {business.city}, {business.state} {business.zipCode}
+          </p>
+          <p>
+            {business.description}
+          </p>
+        </div>
         <BusReviews business={ business } />
       </div>
     </div>
