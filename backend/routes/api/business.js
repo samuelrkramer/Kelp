@@ -86,9 +86,9 @@ router.get(
         attributes: ['id', 'username']
       }, {
         model: Review,
+        attributes: ['id', 'rating']
         // include: [{  // probably just need aggregate info from reviews for the frontpage
         //   model: User,
-        //   attributes: ['id', 'username']
         // }]
       }]
     });
@@ -108,7 +108,7 @@ router.get(
       //   attributes: ['id', 'username']
       // }, {
         model: Review,
-        attributes: ['id'],
+        attributes: ['id', 'rating'],
       //   include: [{
       //     model: User,
           // attributes: ['id', 'username']

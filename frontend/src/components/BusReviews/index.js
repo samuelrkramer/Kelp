@@ -96,7 +96,7 @@ const BusReviews = ({ business }) => {
         {business.reviews && reviews.map(rev => (
           <div className="reviewBox" id={`rev${rev.id}`} key={rev.id}>
             {/* {rev.id} */}
-            {rev.imgUrl && (<img src={rev.imgUrl} alt="review image" />)}
+            {!(!rev.imgUrl) && (<img src={rev.imgUrl} alt="review image" />)}
             <div className="rating">{rev.rating}/5 from {rev.User.username}</div>
             <p className="answer">
               {rev.answer}<br />
