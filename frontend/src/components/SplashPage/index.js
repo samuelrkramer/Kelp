@@ -20,6 +20,7 @@ const SplashPage = () => {
 
   const handleSearch = e => {
     e.preventDefault();
+    
   }
   
   useEffect(() => {
@@ -48,7 +49,7 @@ const SplashPage = () => {
       <div className="splashContent">
         <Link to="/business" className="logo splashLogo">kelp🌿</Link>
         <div className="searchbar">
-          {/* <form onSubmit={handleSearch}> */}
+          <form onSubmit={handleSearch}>
             Find
             <input
               type="text"
@@ -57,8 +58,8 @@ const SplashPage = () => {
               onChange={e => setQuery(e.target.value)}
               style={{backgroundColor: "red"}}
               />
-            {/* <button type="submit">🔍</button> */}
-          {/* </form> */}
+            <button type="submit">🔍</button>
+          </form>
         </div><br />
         <Link to="/business">Check out our businesses!</Link>
         {/* <h1>Splash Page</h1> */}
