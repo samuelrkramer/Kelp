@@ -16,7 +16,7 @@ for (let el of bgPaths) {
 const SplashPage = () => {
   const [bgNum, setBgNum] = useState(0);
   // console.log("new bg img", bgImgs[bgNum])
-  const [search, setSearch] = useState("");
+  const [query, setQuery] = useState("");
 
   const handleSearch = e => {
     e.preventDefault();
@@ -48,17 +48,17 @@ const SplashPage = () => {
       <div className="splashContent">
         <Link to="/business" className="logo splashLogo">kelp🌿</Link>
         <div className="searchbar">
-          <form onSubmit={handleSearch}>
+          {/* <form onSubmit={handleSearch}> */}
             Find
             <input
               type="text"
-              name="search"
-              placeholder="Coming soon..."
-              value={search}
-              onChange={e => setSearch(e.target.value)}
-            />
-            <button type="submit">🔍</button>
-          </form>
+              name="query"
+              value={query}
+              onChange={e => setQuery(e.target.value)}
+              style={{backgroundColor: "red"}}
+              />
+            {/* <button type="submit">🔍</button> */}
+          {/* </form> */}
         </div><br />
         <Link to="/business">Check out our businesses!</Link>
         {/* <h1>Splash Page</h1> */}
