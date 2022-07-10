@@ -15,7 +15,7 @@ const { handleValidationErrors } = require('../../utils/validation');
 router.get(
   "/:query(\\w+)",
   asyncHandler(async (req, res, next) => {
-    const query = parseInt(req.params.query);
+    const query = req.params.query;
     const businesses = await Business.findAll({
       where: {
         title: {
