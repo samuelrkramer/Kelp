@@ -13,14 +13,17 @@ const { handleValidationErrors } = require('../../utils/validation');
 
 // search I guess
 router.get(
-  "/:query(\\w+)",
+  // "/:query(\\w+)",
+  "/",
   asyncHandler(async (req, res, next) => {
-    const query = req.params.query;
+    // const query = req.params.query;
+    const q = req.query.q;
+    // console.log("query:",q)
     const businesses = await Business.findAll({
       where: {
         title: {
-          [Op.startsWith]: query,
-        }
+          [Op.iLike]: `%${q}%`,
+        },
       }
     });
     
