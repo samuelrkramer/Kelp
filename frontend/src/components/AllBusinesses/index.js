@@ -3,20 +3,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getBusinesses } from "../../store/business";
 
-import "./ListBusinesses.css";
+import "./AllBusinesses.css";
 
 const noimg = require("../../static/noimg.jpeg");
 
-const ListBusinesses = () => {
+const AllBusinesses = () => {
   const dispatch = useDispatch();
   const businesses = useSelector(state => state.business)
   // console.log(typeof(businesses), businesses);
   const bizIds = Object.keys(businesses);
 
   useEffect(() => {
-    // console.log("useEffect on ListBusinesses fired")
+    // console.log("useEffect on AllBusinesses fired")
     dispatch(getBusinesses());
-    // console.log("... after dispatch, ListBusinesses component")
+    // console.log("... after dispatch, AllBusinesses component")
   }, [dispatch])
 
   return (
@@ -43,4 +43,4 @@ const ListBusinesses = () => {
   );
 };
 
-export default ListBusinesses;
+export default AllBusinesses;
