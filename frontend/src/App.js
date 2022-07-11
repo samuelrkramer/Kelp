@@ -9,6 +9,7 @@ import SignupFormPage from "./components/SignupFormPage";
 import Navigation from "./components/Navigation";
 import BusinessFormPage from "./components/BusinessFormPage";
 import BusinessView from "./components/BusinessView";
+import SearchBusinesses from "./components/SearchBusinesses";
 
 function App() {
   const dispatch = useDispatch();
@@ -43,6 +44,9 @@ function App() {
           </Route>
           <Route path="/editBusiness/:businessId">
             <BusinessFormPage mode="Edit" />
+          </Route>
+          <Route path="/search/:query">
+            <SearchBusinesses />
           </Route>
         </Switch>
       )}

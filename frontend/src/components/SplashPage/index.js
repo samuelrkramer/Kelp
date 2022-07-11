@@ -18,11 +18,11 @@ const SplashPage = () => {
   
   const [bgNum, setBgNum] = useState(0);
   // console.log("new bg img", bgImgs[bgNum])
-  const [q, setQ] = useState("");
+  const [query, setQuery] = useState("");
   
   const handleSearch = e => {
     e.preventDefault();
-    history.push(`/search?q=${encodeURIComponent(q)}`);
+    history.push(`/search/${encodeURIComponent(query)}`);
   }
   
   useEffect(() => {
@@ -55,9 +55,9 @@ const SplashPage = () => {
             Find
             <input
               type="text"
-              name="q"
-              value={q}
-              onChange={e => setQ(e.target.value)}
+              name="query"
+              value={query}
+              onChange={e => setQuery(e.target.value)}
               style={{backgroundColor: "red"}}
               />
             <button type="submit">🔍</button>
