@@ -19,7 +19,7 @@ const AllBusinesses = () => {
     dispatch(getBusinesses());
     // console.log("... after dispatch, AllBusinesses component")
   }, [dispatch])
-  console.log("allbussinesses:", bizIds, businesses)
+  // console.log("allbussinesses:", bizIds, businesses)
 
   return (
     <div className="contentBox">

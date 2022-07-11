@@ -58,7 +58,7 @@ export const getBusinesses = () => async dispatch => {
 
 export const searchBusinesses = (query) => async dispatch => {
   const response = await csrfFetch(`/api/search?q=${query}`);
-  console.log("searchBusinesses thunk fired");
+  // console.log("searchBusinesses thunk fired");
 
   if (response.ok) {
     const businesses = await response.json();

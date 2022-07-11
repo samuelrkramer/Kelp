@@ -58,7 +58,7 @@ const SplashPage = () => {
               name="query"
               value={query}
               onChange={e => setQuery(e.target.value)}
-              style={{backgroundColor: "red"}}
+              // style={{backgroundColor: "red"}}
               />
             <button type="submit">🔍</button>
           </form>

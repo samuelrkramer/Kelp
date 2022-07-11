@@ -23,7 +23,7 @@ const SearchBusinesses = () => {
     setBizIds(results);
     // console.log("... after dispatch, AllBusinesses component")
   }, [dispatch]);
-  console.log("searchbizIds: ", bizIds, businesses)
+  // console.log("searchbizIds: ", bizIds, businesses)
 
   return (
     <div className="contentBox">
