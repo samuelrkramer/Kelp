@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { searchBusinesses } from "../../store/business";
@@ -12,13 +12,15 @@ const SearchBusinesses = () => {
   const { query } = useParams();
 
   const dispatch = useDispatch();
-  const businesses = useSelector(state => state.business)
+  // const businesses = useSelector(state => state.business)
+  const [businesses, setBusinesses] = useState([]);
   // console.log(typeof(businesses), businesses);
   // const bizIds = Object.keys(businesses);
 
-  useEffect(() => {
+  useEffect(async () => {
     // console.log("useEffect on AllBusinesses fired")
-    dispatch(searchBusinesses(query));
+    const results = await dispatch(searchBusinesses(query));
+    setBusinesses(results);
     // console.log("... after dispatch, AllBusinesses component")
   }, [dispatch]);
 

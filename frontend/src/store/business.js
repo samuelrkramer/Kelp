@@ -64,6 +64,9 @@ export const searchBusinesses = (query) => async dispatch => {
     const businesses = await response.json();
     // console.log("businesses:", businesses);
     dispatch(loadBusinesses(businesses));
+
+    // return businesses.map(el => el.id);
+    return businesses;
   }
 };
 
