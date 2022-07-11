@@ -3,12 +3,13 @@ import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import * as sessionActions from "./store/session";
 import SplashPage from "./components/SplashPage";
-import ListBusinesses from "./components/ListBusinesses";
+import AllBusinesses from "./components/AllBusinesses";
 import LoginFormPage from "./components/LoginFormPage";
 import SignupFormPage from "./components/SignupFormPage";
 import Navigation from "./components/Navigation";
 import BusinessFormPage from "./components/BusinessFormPage";
 import BusinessView from "./components/BusinessView";
+import SearchBusinesses from "./components/SearchBusinesses";
 
 function App() {
   const dispatch = useDispatch();
@@ -24,10 +25,10 @@ function App() {
         <Switch>
           <Route exact path="/">
             <SplashPage />
-            {/* <ListBusinesses /> */}
+            {/* <AllBusinesses /> */}
           </Route>
           <Route exact path="/business">
-            <ListBusinesses />
+            <AllBusinesses />
           </Route>
           <Route path="/login">
             <LoginFormPage />
@@ -43,6 +44,9 @@ function App() {
           </Route>
           <Route path="/editBusiness/:businessId">
             <BusinessFormPage mode="Edit" />
+          </Route>
+          <Route path="/search/:query">
+            <SearchBusinesses />
           </Route>
         </Switch>
       )}

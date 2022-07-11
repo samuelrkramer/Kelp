@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import "./SplashPage.css";
 
 function importAll(r) {
@@ -14,12 +14,15 @@ for (let el of bgPaths) {
 }
 
 const SplashPage = () => {
+  const history = useHistory();
+  
   const [bgNum, setBgNum] = useState(0);
   // console.log("new bg img", bgImgs[bgNum])
-  const [search, setSearch] = useState("");
-
+  const [query, setQuery] = useState("");
+  
   const handleSearch = e => {
     e.preventDefault();
+    history.push(`/search/${encodeURIComponent(query)}`);
   }
   
   useEffect(() => {
@@ -52,11 +55,11 @@ const SplashPage = () => {
             Find
             <input
               type="text"
-              name="search"
-              placeholder="Coming soon..."
-              value={search}
-              onChange={e => setSearch(e.target.value)}
-            />
+              name="query"
+              value={query}
+              onChange={e => setQuery(e.target.value)}
+              // style={{backgroundColor: "red"}}
+              />
             <button type="submit">🔍</button>
           </form>
         </div><br />

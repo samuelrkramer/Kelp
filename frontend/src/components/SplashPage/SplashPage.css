@@ -26,7 +26,7 @@
   background-repeat: no-repeat;
   position: fixed;
   top: 0px;
-  z-index: -2;
+  /* z-index: -2; */
 
   transition: background-image 3s;
   height: 100%;
@@ -97,7 +97,7 @@
 }
 .searchbar form {
   display: grid;
-  grid-template-columns: 45px 1fr 15px;
+  grid-template-columns: 25px 1fr 15px;
   text-align: left;
   font-size: 1.5em;
 
@@ -108,6 +108,7 @@
 
 .searchbar input {
   margin-left: 2em;
+  font-size: large;
 }
 .searchbar button {
   font-size: 1em;
