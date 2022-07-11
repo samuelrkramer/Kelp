@@ -2,7 +2,8 @@ import { LOAD_REVIEWS, ADD_REVIEW, DELETE_REVIEW } from './reviews';
 import { csrfFetch } from './csrf';
 
 const LOAD_BUSINESSES = 'business/LOAD_BUSINESSES';
-const LOAD_ONE_BUSINESS = 'business/LOAD_ONE_BUSINESS'
+const LOAD_ONE_BUSINESS = 'business/LOAD_ONE_BUSINESS';
+// const SEARCH_BUSINESSES = 'business/SEARCH_BUSINESSES';
 const ADD_BUSINESS = 'business/ADD_BUSINESS';
 const UPDATE_BUSINESS = 'business/UPDATE_BUSINESS';
 const DELETE_BUSINESS = 'business/DELETE_BUSINESS';
@@ -16,6 +17,11 @@ const loadOneBusiness = business => ({
   type: LOAD_ONE_BUSINESS,
   payload: business,
 });
+
+// const loadSearchBusinesses = businesses => ({
+//   type: SEARCH_BUSINESSES,
+//   payload: businesses,
+// });
 
 const addBusiness = (business) => {
   return {
@@ -48,7 +54,18 @@ export const getBusinesses = () => async dispatch => {
     // console.log("businesses:", businesses);
     dispatch(loadBusinesses(businesses));
   }
-}
+};
+
+export const searchBusinesses = (query) => async dispatch => {
+  const response = await csrfFetch(`/api/search?q=${query}`);
+  console.log("searchBusinesses thunk fired");
+
+  if (response.ok) {
+    const businesses = await response.json();
+    // console.log("businesses:", businesses);
+    dispatch(loadBusinesses(businesses));
+  }
+};
 
 export const fetchOneBusiness = (id) => async dispatch => {
   // console.log("fetchOneBusiness thunk fired");
@@ -59,7 +76,7 @@ export const fetchOneBusiness = (id) => async dispatch => {
     // console.log("business:", business);
     dispatch(loadOneBusiness(business));
   }
-}
+};
 
 export const createBusiness = (business) => async (dispatch) => {
   // const newBusiness = { ...business, ownerId: user.id }
@@ -92,7 +109,7 @@ export const deleteBusiness = (id) => async (dispatch) => {
     const delId = await response.json();
     dispatch(removeBusiness(delId));
   }
-}
+};
 
 const initialState = {
   // list: [],  // possibly more advanced than this project

@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import { getBusinesses } from "../../store/business";
+import { searchBusinesses } from "../../store/business";
 import ListBusinesses from "../ListBusinesses";
 
 // import "./AllBusinesses.css";
@@ -18,7 +18,7 @@ const SearchBusinesses = () => {
 
   useEffect(() => {
     // console.log("useEffect on AllBusinesses fired")
-    dispatch(getBusinesses());
+    dispatch(searchBusinesses(query));
     // console.log("... after dispatch, AllBusinesses component")
   }, [dispatch]);
 
