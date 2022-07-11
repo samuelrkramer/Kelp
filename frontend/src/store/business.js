@@ -65,8 +65,8 @@ export const searchBusinesses = (query) => async dispatch => {
     // console.log("businesses:", businesses);
     dispatch(loadBusinesses(businesses));
 
-    // return businesses.map(el => el.id);
-    return businesses;
+    return businesses.map(el => el.id);
+    // return businesses;
   }
 };
 

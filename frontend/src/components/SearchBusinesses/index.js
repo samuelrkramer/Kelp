@@ -12,24 +12,25 @@ const SearchBusinesses = () => {
   const { query } = useParams();
 
   const dispatch = useDispatch();
-  // const businesses = useSelector(state => state.business)
-  const [businesses, setBusinesses] = useState([]);
+  const businesses = useSelector(state => state.business)
+  const [bizIds, setBizIds] = useState([]);
   // console.log(typeof(businesses), businesses);
   // const bizIds = Object.keys(businesses);
 
   useEffect(async () => {
     // console.log("useEffect on AllBusinesses fired")
     const results = await dispatch(searchBusinesses(query));
-    setBusinesses(results);
+    setBizIds(results);
     // console.log("... after dispatch, AllBusinesses component")
   }, [dispatch]);
+  console.log("searchbizIds: ", bizIds, businesses)
 
   return (
     <div className="contentBox">
       <div className="businessList">
         <h1>Search Results:</h1>
         <h2>For query: {query}</h2> 
-        <ListBusinesses businesses={businesses} />
+        <ListBusinesses businesses={businesses} bizIds={bizIds} />
       </div>
     </div>
   );

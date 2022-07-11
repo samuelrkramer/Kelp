@@ -7,10 +7,10 @@ import "./ListBusinesses.css";
 
 const noimg = require("../../static/noimg.jpeg");
 
-const ListBusinesses = ({businesses}) => {
+const ListBusinesses = ({businesses, bizIds}) => {
   const dispatch = useDispatch();
   // console.log(typeof(businesses), businesses);
-  const bizIds = Object.keys(businesses);
+  // const bizIds = Object.keys(businesses);
 
   return (
     <div className="busCardList">
