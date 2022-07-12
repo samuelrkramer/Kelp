@@ -18,8 +18,8 @@ router.get(
   asyncHandler(async (req, res, next) => {
     // const query = req.params.query;
     const q = req.query.q;
-    console.log("#################################");
-    console.log("query:",q);
+    // console.log("#################################");
+    // console.log("query:",q);
     const businesses = await Business.findAll({
       where: {
         title: {

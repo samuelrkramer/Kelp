@@ -9,7 +9,7 @@ import ListBusinesses from "../ListBusinesses";
 // const noimg = require("../../static/noimg.jpeg");
 
 const SearchBusinesses = () => {
-  console.log("wls:",window.location);
+  // console.log("wls:",window.location);
   // const { query } = useParams();
   const urlParams = new URLSearchParams(window.location.search);
   const query = urlParams.get('query');
