@@ -5,7 +5,7 @@ import { getBizReviews, deleteReview, createReview } from "../../store/reviews";
 
 const BusReviews = ({ business }) => {
   const dispatch = useDispatch();
-  const sessionUser = useSelector(state => state.session.user);
+  const sessionUser = useSelector(state => state.session.user) || {id: null};
 
   const [rating, setRating] = useState(5);
   const [answer, setAnswer] = useState("");
