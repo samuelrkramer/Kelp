@@ -45,7 +45,7 @@ function App() {
           <Route path="/editBusiness/:businessId">
             <BusinessFormPage mode="Edit" />
           </Route>
-          <Route path="/search/:query">
+          <Route path="/search">
             <SearchBusinesses />
           </Route>
         </Switch>
