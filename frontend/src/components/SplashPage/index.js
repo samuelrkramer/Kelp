@@ -22,7 +22,7 @@ const SplashPage = () => {
   
   const handleSearch = e => {
     e.preventDefault();
-    history.push(`/search/${encodeURIComponent(query)}`);
+    history.push(`/search?query=${encodeURIComponent(query)}`);
   }
   
   useEffect(() => {
