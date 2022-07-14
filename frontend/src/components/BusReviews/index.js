@@ -98,7 +98,7 @@ const BusReviews = ({ business }) => {
       </div>
       )}
       {/* <button onClick={() => setShowForm(!showForm)}>{showForm?"Cancel":"Leave a"} review</button> */}
-      {!showForm && buttonComponent}
+      {!showForm && sessionUser && buttonComponent}
       <div className="reviewContainer">
         <h2>Reviews</h2>
         {business.reviews && reviews.map(rev => (
@@ -110,7 +110,7 @@ const BusReviews = ({ business }) => {
               <p className="answer">
                 {rev.answer}<br />
               </p>
-              {rev.User.id === sessionUser.id && (
+              {!!sessionUser && rev.User.id === sessionUser.id && (
                 <button onClick={() => handleDelete(rev.id)}>Delete</button>
               )}
             </div>
