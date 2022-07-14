@@ -21,10 +21,17 @@ const SearchBusinesses = () => {
   // console.log(typeof(businesses), businesses);
   // const bizIds = Object.keys(businesses);
 
-  useEffect(async () => {
-    // console.log("useEffect on AllBusinesses fired")
-    const results = await dispatch(searchBusinesses(query));
-    setBizIds(results);
+  useEffect(() => {
+    const doSearch = async query => {
+
+      // console.log("useEffect on AllBusinesses fired")
+      const disp = await searchBusinesses(query);
+      const results = await dispatch(disp);
+      setBizIds(results);
+      // return results;
+    }
+    doSearch(query);
+    // debugger;
     // console.log("... after dispatch, AllBusinesses component")
     setLoaded(true);
   }, [dispatch]);
