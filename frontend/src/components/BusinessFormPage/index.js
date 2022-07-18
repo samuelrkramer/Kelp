@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
+import { Modal } from '../../context/Modal';
 import { fetchOneBusiness, createBusiness, editBusiness, deleteBusiness } from '../../store/business';
 
 
@@ -8,7 +9,8 @@ const BusinessFormPage = ({mode}) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const sessionUser = useSelector(state => state.session.user);
-  
+  const [showModal, setShowModal] = useState(false);
+
   let { businessId } = useParams();
   const oldBusiness = useSelector(state => state.business[businessId || 1])
   let business = {};
@@ -89,6 +91,7 @@ const BusinessFormPage = ({mode}) => {
     // console.log("result",result);
     // console.log("await result:",await result);
     // if (result) {}
+    setShowModal(false);
     history.push("/business");
     // }
   }
@@ -197,11 +200,18 @@ const BusinessFormPage = ({mode}) => {
           <div className="underForm">
             <button type="submit">Submit</button>
             {mode === "Edit" && (
-              <button onClick={e => handleDelete(e)}>Delete</button>
+              <button onClick={() => setShowModal(true)}>Delete</button>
             )}
           </div>
         </form>
       </div>
+      {showModal && (
+        <Modal onClose={() => setShowModal(false)}>
+          Are you sure you want to delete this?
+          <button onClick={() => setShowModal(false)}>Cancel</button>
+          <button onClick={e => handleDelete(e)}>Delete</button>
+        </Modal>
+      )}
     </>
   );
 };
