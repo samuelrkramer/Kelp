@@ -50,6 +50,13 @@ const BusinessFormPage = ({mode}) => {
   //   setLat("");
   //   setLng("");
   // }
+
+  const startConfirm = e => {
+    e.preventDefault();
+    // console.log("startconfirm fired")
+    setShowModal(true)
+    // console.log("modal shown", showModal);
+  }
   
   const handleSubmit = async e => {
     e.preventDefault();
@@ -87,6 +94,7 @@ const BusinessFormPage = ({mode}) => {
   }
 
   const handleDelete = async e => {
+    console.log("handleDelete fired")
     e.preventDefault();
     const result = await dispatch(deleteBusiness(businessId));
     // console.log("result",result);
@@ -201,7 +209,7 @@ const BusinessFormPage = ({mode}) => {
           <div className="underForm">
             <button type="submit">Submit</button>
             {mode === "Edit" && (
-              <button onClick={() => setShowModal(true)}>Delete</button>
+              <button onClick={startConfirm}>Delete</button>
             )}
           </div>
         </form>
