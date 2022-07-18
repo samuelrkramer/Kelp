@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
+import { Modal } from '../../context/Modal';
+import DeleteModal from '../DeleteModal';
 import { fetchOneBusiness, createBusiness, editBusiness, deleteBusiness } from '../../store/business';
 
 
@@ -8,7 +10,8 @@ const BusinessFormPage = ({mode}) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const sessionUser = useSelector(state => state.session.user);
-  
+  const [showModal, setShowModal] = useState(false);
+
   let { businessId } = useParams();
   const oldBusiness = useSelector(state => state.business[businessId || 1])
   let business = {};
@@ -47,6 +50,13 @@ const BusinessFormPage = ({mode}) => {
   //   setLat("");
   //   setLng("");
   // }
+
+  const startConfirm = e => {
+    e.preventDefault();
+    // console.log("startconfirm fired")
+    setShowModal(true)
+    // console.log("modal shown", showModal);
+  }
   
   const handleSubmit = async e => {
     e.preventDefault();
@@ -84,13 +94,20 @@ const BusinessFormPage = ({mode}) => {
   }
 
   const handleDelete = async e => {
+    // console.log("handleDelete fired")
     e.preventDefault();
     const result = await dispatch(deleteBusiness(businessId));
     // console.log("result",result);
     // console.log("await result:",await result);
     // if (result) {}
+    setShowModal(false);
     history.push("/business");
     // }
+  }
+
+  const handleCancel = e => {
+    e.preventDefault();
+    history.goBack();
   }
 
   // useEffect(() => {
@@ -197,11 +214,19 @@ const BusinessFormPage = ({mode}) => {
           <div className="underForm">
             <button type="submit">Submit</button>
             {mode === "Edit" && (
-              <button onClick={e => handleDelete(e)}>Delete</button>
+              <>
+                <button onClick={handleCancel}>Cancel</button>
+                <button onClick={startConfirm}>Delete</button>
+              </>
             )}
           </div>
         </form>
       </div>
+      {showModal && (
+        <Modal onClose={() => setShowModal(false)}>
+          <DeleteModal onCancel={() => setShowModal(false)} onDelete={e => handleDelete(e)} />
+        </Modal>
+      )}
     </>
   );
 };

@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { Modal } from "../../context/Modal";
 // import { useHistory } from "react-router-dom";
 import { getBizReviews, deleteReview, createReview } from "../../store/reviews";
+import DeleteModal from "../DeleteModal";
 
 const BusReviews = ({ business }) => {
   const dispatch = useDispatch();
@@ -12,6 +14,7 @@ const BusReviews = ({ business }) => {
   const [imgUrl, setImgUrl] = useState("");
   const [showForm, setShowForm] = useState(false);
   const [errors, setErrors] = useState([]);
+  const [showModal, setShowModal] = useState(false);
 
   const reviews = useSelector(state => {
     if (!business.reviews) return null;
@@ -47,6 +50,7 @@ const BusReviews = ({ business }) => {
   const handleDelete = async (id) => {
     const result = dispatch(deleteReview(id, business.id));
     if (!result) alert("Delete failed");
+    else setShowModal(false);
   }
 
   useEffect(() => {
@@ -111,12 +115,17 @@ const BusReviews = ({ business }) => {
                 {rev.answer}<br />
               </p>
               {!!sessionUser && rev.User.id === sessionUser.id && (
-                <button onClick={() => handleDelete(rev.id)}>Delete</button>
+                <button onClick={() => setShowModal(rev.id)}>Delete</button>
               )}
             </div>
           </div>
         ))}
       </div>
+      {showModal && (
+        <Modal onClose={() => setShowModal(false)}>
+          <DeleteModal onCancel={() => setShowModal(false)} onDelete={() => handleDelete(showModal)} />
+        </Modal>
+      )}
     </>
   );
 };
