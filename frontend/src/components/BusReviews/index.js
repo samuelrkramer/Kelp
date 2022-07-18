@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Modal } from "../../context/Modal";
 // import { useHistory } from "react-router-dom";
 import { getBizReviews, deleteReview, createReview } from "../../store/reviews";
+import DeleteModal from "../DeleteModal";
 
 const BusReviews = ({ business }) => {
   const dispatch = useDispatch();
@@ -122,9 +123,7 @@ const BusReviews = ({ business }) => {
       </div>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          Are you sure you want to delete this?
-          <button onClick={() => setShowModal(false)}>Cancel</button>
-          <button onClick={() => handleDelete(showModal)}>Delete</button>
+          <DeleteModal onCancel={() => setShowModal(false)} onDelete={() => handleDelete(showModal)} />
         </Modal>
       )}
     </>

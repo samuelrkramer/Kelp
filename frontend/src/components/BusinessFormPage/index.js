@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
 import { Modal } from '../../context/Modal';
+import DeleteModal from '../DeleteModal';
 import { fetchOneBusiness, createBusiness, editBusiness, deleteBusiness } from '../../store/business';
 
 
@@ -207,9 +208,7 @@ const BusinessFormPage = ({mode}) => {
       </div>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          Are you sure you want to delete this?
-          <button onClick={() => setShowModal(false)}>Cancel</button>
-          <button onClick={e => handleDelete(e)}>Delete</button>
+          <DeleteModal onCancel={() => setShowModal(false)} onDelete={e => handleDelete(e)} />
         </Modal>
       )}
     </>
