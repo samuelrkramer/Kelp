@@ -94,7 +94,7 @@ const BusinessFormPage = ({mode}) => {
   }
 
   const handleDelete = async e => {
-    console.log("handleDelete fired")
+    // console.log("handleDelete fired")
     e.preventDefault();
     const result = await dispatch(deleteBusiness(businessId));
     // console.log("result",result);
@@ -103,6 +103,11 @@ const BusinessFormPage = ({mode}) => {
     setShowModal(false);
     history.push("/business");
     // }
+  }
+
+  const handleCancel = e => {
+    e.preventDefault();
+    history.goBack();
   }
 
   // useEffect(() => {
@@ -209,7 +214,10 @@ const BusinessFormPage = ({mode}) => {
           <div className="underForm">
             <button type="submit">Submit</button>
             {mode === "Edit" && (
-              <button onClick={startConfirm}>Delete</button>
+              <>
+                <button onClick={handleCancel}>Cancel</button>
+                <button onClick={startConfirm}>Delete</button>
+              </>
             )}
           </div>
         </form>
