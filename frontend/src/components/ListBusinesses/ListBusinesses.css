@@ -1,6 +1,6 @@
 .busCardList {
-  display: flex;
-  flex-wrap: wrap;
+  /* display: flex;
+  flex-wrap: wrap; */
   /* align-content: space-between; */
 }
 
@@ -8,13 +8,15 @@
   background-color: #fff8;
   border: 1px solid navy;
   border-radius: 5px;
-  padding: 5px 5px;
+  padding: 24px;
   margin: 10px;
-  max-width: 180px;
+  /* max-width: 180px; */
+  display: flex;
 }
 
 .busCard .busCardImg {
-  align-self: center;
+  /* align-self: center; */
+  margin-right: 24px;
 }
 
 .busLocation {
