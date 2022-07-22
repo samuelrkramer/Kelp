@@ -3,6 +3,7 @@ import { useParams, Redirect, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchOneBusiness } from "../../store/business";
 import BusReviews from "../BusReviews";
+import Rating from "../Rating";
 
 import "./BusinessView.css"
 
@@ -40,6 +41,7 @@ const BusinessView = () => {
       <div className="businessDiv">
         {!(!business.imgUrl) && (<img src={business.imgUrl} alt={business.title} />)}
         <h1>{business.title}</h1>
+        <h2><Rating reviews={business.Reviews} /></h2> 
         {sessionUser && business.ownerId === sessionUser.id && (
           <Link to={`/editBusiness/${businessId}`}>Edit Business</Link>
         )}

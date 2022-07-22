@@ -4,6 +4,7 @@ import { Modal } from "../../context/Modal";
 // import { useHistory } from "react-router-dom";
 import { getBizReviews, deleteReview, createReview } from "../../store/reviews";
 import DeleteModal from "../DeleteModal";
+import Rating from '../Rating';
 
 const BusReviews = ({ business }) => {
   const dispatch = useDispatch();
@@ -110,7 +111,8 @@ const BusReviews = ({ business }) => {
             {/* {rev.id} */}
             {!(!rev.imgUrl) && (<img src={rev.imgUrl} alt="review image" />)}
             <div className="revNotImg">
-              <div className="rating">{rev.rating}/5 from {rev.User.username}</div>
+              {/* <div className="rating">{rev.rating}/5 from {rev.User.username}</div> */}
+              <div className="rating"><Rating reviews={[rev]} starsOnly={true} /> from {rev.User.username}</div>
               <p className="answer">
                 {rev.answer}<br />
               </p>
