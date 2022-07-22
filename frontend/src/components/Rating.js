@@ -2,7 +2,7 @@
 // ⭐️★☆✩😕😀🙂😡🤢🌿
 // TODO: replace these with fontawesome icons
 
-const Rating = ({reviews}) => {
+const Rating = ({reviews, starsOnly=false}) => {
   // console.log(reviews.length, reviews);
   if (!reviews.length) {
     return(<>
@@ -14,7 +14,9 @@ const Rating = ({reviews}) => {
   const avg = sum/reviews.length || 0;
   const stars = Math.round(avg)
   const starString = "★".repeat(stars).padEnd(5,"☆")
-
+  if (starsOnly) {
+    return starString;
+  }
   return (
     <>
     {starString} ({avg.toFixed(2)}) from {reviews.length} review{reviews.length>1?"s":""}
