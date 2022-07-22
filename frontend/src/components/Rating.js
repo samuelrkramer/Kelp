@@ -6,7 +6,7 @@ const Rating = ({reviews}) => {
   // console.log(reviews.length, reviews);
   if (!reviews.length) {
     return(<>
-    😀🤢😕😡🙂🌿 Be the first to leave a review!)
+    😀🙂😕😡🤢🌿 Be the first to leave a review!
     </>)
   }
 
