@@ -32,7 +32,7 @@ const ListBusinesses = ({businesses, bizIds}) => {
             <span className="busLocation">
               ({businesses[el].city}, {businesses[el].state})
             </span>
-            <h3>Rating: sum {avgRate}</h3>
+            <h3>Rating: {avgRate} from {revs.length} reviews</h3>
           </div>
         </div>
       )}
