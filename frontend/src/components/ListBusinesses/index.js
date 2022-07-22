@@ -14,7 +14,11 @@ const ListBusinesses = ({businesses, bizIds}) => {
 
   return (
     <div className="busCardList">
-      { bizIds.map(el => (
+      { bizIds.map(el => {
+        const revs = businesses[el].Reviews || [];
+        console.log(revs.length, revs);
+        const avgRate = revs.reduce((sum, rev) => sum + rev.rating, 0)/revs.length || 0;
+        return (
         <div className="busCard" key={el}>
           <div className="busCardImageBox">
             <img src={businesses[el].imgUrl || noimg} alt="Image"
@@ -24,13 +28,15 @@ const ListBusinesses = ({businesses, bizIds}) => {
             }}/>
           </div>
           <div className="busCardInfoBox">
-            <Link to={`/business/${businesses[el].id}`}>{businesses[el].title}</Link><br />
+            <h2><Link to={`/business/${businesses[el].id}`}>{businesses[el].title}</Link></h2>
             <span className="busLocation">
               ({businesses[el].city}, {businesses[el].state})
             </span>
+            <h3>Rating: sum {avgRate}</h3>
           </div>
         </div>
-      )) }
+      )}
+      ) }
     </div>
   );
 };
