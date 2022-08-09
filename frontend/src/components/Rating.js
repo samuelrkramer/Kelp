@@ -19,7 +19,7 @@ const Rating = ({reviews, starsOnly=false}) => {
   }
   return (
     <>
-    {starString} ({avg.toFixed(2)}) from {reviews.length} review{reviews.length>1?"s":""}
+    {starString} ({avg.toFixed(1)}) from {reviews.length} review{reviews.length>1?"s":""}
     </>
   )
 };

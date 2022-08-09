@@ -12,4 +12,8 @@ router.use('/business', businessRouter);
 router.use('/reviews', reviewsRouter);
 router.use('/search', searchRouter);
 
+router.get('/wakeup', async (req, res) => {
+  res.json({woke: "I'm awake"});
+})
+
 module.exports = router;
