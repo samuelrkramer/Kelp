@@ -18,6 +18,11 @@ function App() {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
+  useEffect(() => {
+    fetch('https://skgetit.herokuapp.com/api/wakeup', {mode: 'no-cors'});
+    fetch('https://wineauxapp.herokuapp.com/api/wakeup', {mode: 'no-cors'});  
+  }, [])
+
   return (
     <>
       <Navigation isLoaded={isLoaded} />
