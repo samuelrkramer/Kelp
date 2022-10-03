@@ -19,8 +19,8 @@ function App() {
   }, [dispatch]);
 
   useEffect(() => {
-    fetch('https://skgetit.herokuapp.com/api/wakeup', {mode: 'no-cors'});
-    fetch('https://wineauxapp.herokuapp.com/api/wakeup', {mode: 'no-cors'});  
+    fetch('https://skgetit.herokuapp.com/api/wakeup/sk-kelp', {mode: 'no-cors'});
+    fetch('https://wineauxapp.herokuapp.com/api/wakeup/sk-kelp', {mode: 'no-cors'});  
   }, [])
 
   return (
